@@ -30,9 +30,9 @@
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-            <a href="" style="color:white">LOGIN</a>
+            <a href="login.php" style="color:white">LOGIN</a>
             <p style="color:white; margin:10px;">|</p>
-            <a href="" style="color:white">REGISTER</a>
+            <a href="register.php" style="color:white">REGISTER</a>
         </form>
     </div>
 </nav>
