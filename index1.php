@@ -10,6 +10,7 @@
     unset($_SESSION['username']);
     header("location: login.php");
   }
+  $result = mysqli_query($db, "SELECT * FROM user");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,8 +28,13 @@
     <?php  if (isset($_SESSION['username'])) : ?>
     <?php include "_include/navbar.php" ?>
     <?php include "_include/sidebar.php" ?>
-
-
+    <?php
+    while ($row = mysqli_fetch_array($result)) {
+      echo "<div id='img_div'>";
+        echo "<img src='images/".$row['img_verification']."' >";
+      echo "</div>";
+    }
+  ?>
 
     <?php include "_include/footer.php" ?>
 

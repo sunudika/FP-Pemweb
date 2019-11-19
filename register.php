@@ -1,4 +1,5 @@
 <?php include('server.php') ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
   	<h2>Register</h2>
   </div>
 	
-  <form method="post" action="register.php">
+  <form method="post" action="register.php" enctype="multipart/form-data">
   	<?php include('errors.php'); ?>
   	<div class="input-group">
   	  <label>Username</label>
@@ -28,14 +29,13 @@
   	  <label>Confirm password</label>
   	  <input type="password" name="password_2">
   	</div>
+    <div class="input-group">
+      Photo: <input type="file" name="image"><br>
+    </div>
   	<div class="input-group">
   	  <button type="submit" class="btn" name="reg_user">Register</button>
   	</div>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-    Select Image File to Upload:
-    <input type="file" name="file">
-    <input type="submit" name="submit" value="Upload">
-    </form>
+    
   	<p>
   		Already a member? <a href="login.php">Sign in</a>
   	</p>
