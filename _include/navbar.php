@@ -32,8 +32,13 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
             <a href="login.php" style="color:white">LOGIN</a>
             <p style="color:white; margin:10px;">|</p>
-            <a href="register.php" style="color:white">REGISTER</a>
+            <a href="register.php" style="color:white">REGISTER</a> &nbsp;
+            <!-- logged in user information -->
+            <?php  if (isset($_SESSION['username'])) : ?>
+                <a href="index1.php?logout='1'" style="color: red;">logout</a>
+            <?php endif ?>
         </form>
+        <form class="form-inline my-2 my-lg-0"> </form>
     </div>
 </nav>
 
@@ -52,7 +57,7 @@
                 <a href=""><i class="fas fa-bell"></i></a>
                 <a href=""><i class="fas fa-comment-dots"></i></a>
                 <a href=""><i class="fas fa-cog"></i></a>
-                <a href="">username anda</a>
+                <a href=""><strong><?php echo $_SESSION['username']; ?></strong></a>
             </div>
         </div>
     </div>
