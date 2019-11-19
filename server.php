@@ -17,7 +17,7 @@ if (isset($_POST['reg_user'])) {
   $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
   $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
 
-  // Initialize message variable
+  // UPLOAD IMAGE
   $msg = "";
 
   // Get image name
