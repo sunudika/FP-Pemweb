@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#" style="text-align:center"><img src="aset/logo3.png" width="200px" height="50px"></a>
+    <a class="navbar-brand" href="#" style="text-align:center">LOGO DISINI<br> FORMATIK</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -30,17 +30,23 @@
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-            <a href="" style="color:white">LOGIN</a>
-            <p style="color:white; margin:10px;">|</p>
-            <a href="" style="color:white">REGISTER</a>
+            <?php if (!isset($_SESSION['username'])) { ?>
+                <a href="login.php" style="color:white">LOGIN</a>
+                <p style="color:white; margin:10px;">|</p>
+                <a href="register.php" style="color:white">REGISTER</a> &nbsp;
+            <?php } else { ?>
+                <!-- logged in user information -->
+                <a href="index1.php?logout='1'" style="color: red; padding: 10px;padding-right:150px; font-weight:bold; font-size:20px;">logout</a>
+            <?php } ?>
         </form>
+        <form class="form-inline my-2 my-lg-0"> </form>
     </div>
 </nav>
 
 <div class="navbar-light bg-light">
     <div class="container">
         <div class="row" style="font-size:20px;">
-            <div class="col-md" style="">
+            <div class="col" style="">
                 <a href="">SKRIPSI</a>
                 <a href="">KKN</a>
                 <a href="">PKL</a>
@@ -48,11 +54,17 @@
                 <a href="">TUTORIAL</a>
                 <a href="">KARYA</a>
             </div>
-            <div class="col-3-md" style="">
+            <div class="col-3" style="">
                 <a href=""><i class="fas fa-bell"></i></a>
                 <a href=""><i class="fas fa-comment-dots"></i></a>
                 <a href=""><i class="fas fa-cog"></i></a>
-                <a href="">username anda</a>
+                <a href=""><strong><?php
+                                    if (isset($_SESSION['username'])) {
+                                        echo $_SESSION['username'];
+                                    } else {
+                                        echo "guest";
+                                    }
+                                    ?></strong></a>
             </div>
         </div>
     </div>
