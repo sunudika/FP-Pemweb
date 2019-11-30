@@ -59,12 +59,19 @@
                 <a href=""><i class="fas fa-comment-dots"></i></a>
                 <a href=""><i class="fas fa-cog"></i></a>
                 <a href=""><strong><?php
-                                    if (isset($_SESSION['username'])) {
-                                        echo $_SESSION['username'];
-                                    } else {
-                                        echo "guest";
-                                    }
-                                    ?></strong></a>
+                if (isset($_SESSION['username'])) {
+                    echo $_SESSION['username'];
+                    
+                    while ($row = mysqli_fetch_array($result)) {
+                    echo "<div id='img_div'>";
+                        echo "<img src='images/".$row['img_verification']."' >";
+                    echo "</div>";
+                    }
+
+                } else {
+                    echo "guest";
+                }
+                ?></strong></a>
             </div>
         </div>
     </div>
