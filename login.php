@@ -1,32 +1,22 @@
-<?php include('server.php') ?>
-<!DOCTYPE html>
-<html>
 <head>
-  <title>Registration system PHP and MySQL</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>coba</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div class="header">
-  	<h2>Login</h2>
-  </div>
-	 
-  <form method="post" action="login.php">
-  	<?php include('errors.php'); ?>
-  	<div class="input-group">
-  		<label>Username</label>
-  		<input type="text" name="username" >
-  	</div>
-  	<div class="input-group">
-  		<label>Password</label>
-  		<input type="password" name="password">
-  	</div>
-  	<div class="input-group">
-  		<button type="submit" class="btn" name="login_user">Login</button>
-  	</div>
-  	<p>
-  		Not yet a member? <a href="register.php">Sign up</a>
-	  </p>
-	  <p>Gak mau login? Jadi tamu aja lur! <a href="index.php">Home</a> </p>
-  </form>
+    <div class="login-card"><img src="aset/logo2.png" class="profile-img-card" />
+        <p class="profile-name-card"> </p>
+        <form class="form-signin"><span class="reauth-email"> </span>
+            <input class="form-control" type="email" required placeholder="Email address" autofocus id="inputEmail" />
+            <input class="form-control" type="password" required placeholder="Password" id="inputPassword" />
+            <div class="checkbox">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" />Remember me</label>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block btn-lg btn-signin" type="submit">Sign in</button>
+        </form><a href="#" class="forgot-password">Forgot your password?</a></div>
 </body>
-</html>
