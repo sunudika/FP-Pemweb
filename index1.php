@@ -36,14 +36,17 @@ $result = mysqli_query($db, "SELECT * FROM user WHERE username='$image'");
         unset($_SESSION['username']);
         header("location: login.php");
       }
+
+      include "_include/sidebar.php";
+
+      include "_include/content_home.php";
       ?>
-    <?php include "_include/sidebar.php" ?>
+
+
 
     <button class="open-button" onclick="openForm()">Chat</button>
-
     <div class="chat-popup" id="myForm">
       <div id="content" style="margin-top:10px;height:100%;">
-
         <div class="chat">
           <div class="users">
             <?php include("users.php"); ?>
@@ -55,7 +58,6 @@ $result = mysqli_query($db, "SELECT * FROM user WHERE username='$image'");
         </div>
       </div>
       <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-
     </div>
 
     <?php include "_include/footer.php" ?>
