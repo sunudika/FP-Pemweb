@@ -53,8 +53,7 @@ $result = mysqli_query($db, "SELECT * FROM user WHERE username='$image'");
           </div>
           <div class="chatbox">
             <?php include("chat_room/chatbox.php"); ?>
-          </div>
-          <div class="jd-footer"><input id="search_chat" placeholder="Search"></div>
+    </div>
         </div>
       </div>
       <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
