@@ -38,7 +38,8 @@
     
   	<p>
   		Already a member? <a href="login.php">Sign in</a>
-  	</p>
+	  </p>
+	  <p>Gak mau DAFTAR? Jadi tamu aja lur! <a href="index.php">Home</a> </p>
   </form>
 </body>
 </html>

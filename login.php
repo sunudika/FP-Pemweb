@@ -25,7 +25,8 @@
   	</div>
   	<p>
   		Not yet a member? <a href="register.php">Sign up</a>
-  	</p>
+	  </p>
+	  <p>Gak mau login? Jadi tamu aja lur! <a href="index.php">Home</a> </p>
   </form>
 </body>
 </html>

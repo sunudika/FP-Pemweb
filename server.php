@@ -1,5 +1,6 @@
 <?php
-session_start();
+
+include("chat_room/config.php");
 
 // initializing variables
 $username = "";
@@ -88,6 +89,8 @@ if (isset($_POST['login_user'])) {
         $query = "SELECT * FROM user WHERE username='$username' AND password='$password'";
         $results = mysqli_query($db, $query);
         if (mysqli_num_rows($results) == 1) {
+          $sql=$dbh->prepare("UPDATE user SET status='0' WHERE username=username");
+          $sql->execute(array($_SESSION['username']));
           $_SESSION['username'] = $username;
           $_SESSION['success'] = "You are now logged in";
           header('location: index1.php');
