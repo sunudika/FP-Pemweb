@@ -53,7 +53,7 @@ $result = mysqli_query($db, "SELECT * FROM user WHERE username='$image'");
           </div>
           <div class="chatbox">
             <?php include("chat_room/chatbox.php"); ?>
-    </div>
+          </div>
         </div>
       </div>
       <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
@@ -63,6 +63,7 @@ $result = mysqli_query($db, "SELECT * FROM user WHERE username='$image'");
 
     <?php include "js/include_js.php" ?>
   <?php endif ?>
+  <div style="padding:20px;"></div>
 </body>
 
 </html>
