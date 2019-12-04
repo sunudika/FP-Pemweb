@@ -1,10 +1,6 @@
-<?php
-include "server.php";
-include "config_chat.php";
-?>
+<?php include('server.php') ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,9 +8,8 @@ include "config_chat.php";
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
-    <div class="login-card"><img src="images/aset/logo2.png" class="profile-img-card" />
+    <div class="login-card"><img src="aset/logo2.png" class="profile-img-card" />
         <p class="profile-name-card"> </p>
         <form class="form-signin" method="post" action="login.php">
             <input class="form-control" type="text" name="username" required placeholder="Username" autofocus id="inputEmail" />
@@ -26,8 +21,6 @@ include "config_chat.php";
                 </div>
             </div>
             <button class="btn btn-primary btn-block btn-lg btn-signin" type="submit" name="login_user">Sign in</button>
-        </form><a href="#" class="forgot-password">Forgot your password?</a>
-    </div>
+        </form><a href="#" class="forgot-password">Forgot your password?</a></div>
 </body>
-
 </html>

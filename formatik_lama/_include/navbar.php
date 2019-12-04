@@ -36,7 +36,7 @@
                 <a href="register.php" style="color:white">REGISTER</a> &nbsp;
             <?php } else { ?>
                 <!-- logged in user information -->
-                <a href="index.php?logout='1'" style="color: red; padding: 10px;padding-right:150px; font-weight:bold; font-size:20px;">logout</a>
+                <a href="index1.php?logout='1'" style="color: red; padding: 10px;padding-right:150px; font-weight:bold; font-size:20px;">logout</a>
             <?php } ?>
         </form>
         <form class="form-inline my-2 my-lg-0"> </form>

@@ -1,6 +1,15 @@
 <?php
 include "server.php";
-?>
+include "config_chat.php";
+
+if (isset($_GET['logout'])) {
+    include "config_chat.php";
+    $sql = $dbh->prepare("UPDATE user SET status='1' WHERE username=?");
+    $sql->execute(array($_SESSION['username']));
+    session_destroy();
+    unset($_SESSION['username']);
+    header("location: index.php");
+} ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,16 +20,35 @@ include "server.php";
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="author" content="Kelompok 3">
     <title>FORMATIK - Main</title>
-    <?php include "css/include_css.php" ?>
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <?php include "css/include_css.php"; ?>
 </head>
 
 <body class="bg-dark">
-    <?php include "_include/navbar.php" ?>
-    <?php include "_include/sidebar.php" ?>
+    <?php
+    include "_include/navbar.php";
+    include "_include/sidebar.php";
+    include "_include/content_home.php";
 
-    <?php include "_include/footer.php" ?>
+    if (isset($_SESSION['username'])) {
+        include "_include/content_chat.php";
+    }
 
-    <?php include "js/include_js.php" ?>
+    include "_include/footer.php";
+    include "js/include_js.php";
+    ?>
+
+    <div style="padding:20px;"></div>
 </body>
 
 </html>
+
+<script>
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+</script>

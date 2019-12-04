@@ -1,35 +1,35 @@
-body {
-	margin: 0;
+body{
+	margin : 0;
 	font-family: sans-serif;
 	font-size: 14px;
 	line-height: 1.42857143;
 	color: #333;
-	background: url(../images/aset/2.jpg);
+	background: url(../aset/2.jpg);
 }
 
-* {
+*{
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
 .login-card {
-	max-width: 350px;
-	padding: 40px 40px;
-	background-color: rgba(0, 0, 0, 0.4);
-	margin: 0 auto 25px;
-	margin-top: 125px;
-	border-radius: 2px;
-	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4);
+    max-width: 350px;
+    padding: 40px 40px;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: 0 auto 25px;
+    margin-top: 125px;
+    border-radius: 2px;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4);
 }
 
-.login-card .profile-img-card {
+.login-card .profile-img-card{
 	width: 225px;
 	margin: 0 auto 20px;
 	display: block;
 }
 
-.login-card .profile-name-card {
+.login-card .profile-name-card{
 	font-size: 16px;
 	font-weight: bold;
 	text-align: center;
@@ -37,7 +37,7 @@ body {
 	min-height: 1em;
 }
 
-.login-card .reauth-email {
+.login-card .reauth-email{
 	display: block;
 	color: #404040;
 	line-height: 2;
@@ -50,10 +50,7 @@ body {
 	box-sizing: border-box;
 }
 
-.login-card .form-signin input[type=email],
-.login-card .form-signin input[type=password],
-.login-card .form-signin input[type=text],
-.login-card .form-signin button {
+.login-card .form-signin input[type=email], .login-card .form-signin input[type=password], .login-card .form-signin input[type=text], .login-card .form-signin button{
 	height: 44px;
 	font-size: 16px;
 	width: 100%;
@@ -64,18 +61,18 @@ body {
 	box-sizing: border-box;
 }
 
-.login-card label {
+.login-card label{
 	color: #000000;
 }
 
-.login-card .form-signin .form-control:focus {
+.login-card .form-signin .form-control:focus{
 	border-color: rgb(104, 145, 162);
 	outline: 0;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
 }
 
-.login-card .btn.btn-signin {
+.login-card .btn.btn-signin{
 	font-weight: 700;
 	height: 36px;
 	line-height: 36px;
@@ -87,18 +84,14 @@ body {
 	padding: 0;
 }
 
-.login-card .btn.btn-signin:hover,
-.login-card .btn.btn-signin:active,
-.login-card .btn.btn-signin:focus {
+.login-card .btn.btn-signin:hover, .login-card .btn.btn-signin:active, .login-card .btn.btn-signin:focus{
 	background: rgb(12, 97, 33);
 }
 
-.login-card .forgot-password {
+.login-card .forgot-password{
 	color: rgb(104, 145, 162);
 }
 
-.login-card .forgot-password:hover,
-.login-card .forgot-password:active,
-.login-card .forgot-password:focus {
+.login-card .forgot-password:hover, .login-card .forgot-password:active, .login-card .forgot-password:focus{
 	color: rgb(12, 97, 33);
 }
