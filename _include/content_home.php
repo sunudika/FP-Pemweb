@@ -26,64 +26,57 @@
         </div>
 
         <div class="col-8">
-            <?php if (isset($_SESSION['username'])) { ?>
+            <?php if (isset($_SESSION['username'])) {
+                $username = $_SESSION['username'];
+                $sql_profile = mysqli_query($con, "SELECT * FROM user WHERE username='$username'") or die(mysqli_error($con, ""));
+                if (mysqli_num_rows($sql_profile) > 0) {
+                    while ($profile = mysqli_fetch_array($sql_profile)) {
+                        $img_profile = $profile['img_profile'];
+                    };
+                } ?>
                 <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
-                    <img src="<?= base_url() ?>/images/profile/profile.jpg" alt="" style="border-radius:100%; margin-left:10px;" width="40">
+                    <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40">
                     <a href="" style="color:black"><?= $_SESSION['username']; ?></a>
-                    <form action="" method="post">
-                        <textarea name="" id="" cols="100" rows="3" style="display: block; margin-left: auto; margin-right: auto;" placeholder="Ketik postingan anda disini"></textarea>
-                        <input type="button" class="btn btn-primary" value="upload foto"><br>
-                        <input type="submit" class="btn btn-secondary" value="Kirim" style="width:100%;">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <input type="text" name="judul" placeholder="judul" style="display: block; margin-left: auto; margin-right: auto; width:99%">
+                        <textarea name="isi" cols="100" rows="3" style="display: block; margin-left: auto; margin-right: auto;" placeholder="Ketik postingan anda disini"></textarea>
+                        <input type="file" name="photo" value="upload foto"><br>
+                        <input type="submit" name="post_kirim" class="btn btn-secondary" value="kirim" style="width:100%;">
                     </form>
                 </div>
             <?php } ?>
-            <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
-                <div>
-                    <img src="<?= base_url() ?>/images/profile/profile.jpg" alt="" style="border-radius:100%; margin-left:10px;" width="35">
-                    <a href="">Moh. Fathur Rohman</a> Pada (Date_time)
-                    <br>
-                </div>
-                <img src="<?= base_url() ?>/images/thread/wp1828933-programmer-wallpapers.jpg" style="display: block; margin-left: auto; margin-right: auto;" alt="Ceritanya ini foto" width="500">
-                <h5 style="padding: 20px 20px 0 20px;">ini contohnya adalah judul yang lumayan panjang</h5>
-                <hr>
-                <div style="padding: 0 30px">
-                    <img src="<?= base_url() ?>/images/profile/profile.jpg" alt="" style="border-radius:100%; margin-left:10px;" width="30">
-                    <a href="">Moh. Fathur Rohman</a> Ini contoh kalo misalnya ada yang comment
-                    <br>
-                    <a href="" style="padding-left:100px;">Suka</a> Pada (Date_time)
-                </div>
-                <table style="width:100%; text-align:center">
-                    <tr>
-                        <td><button style="background-color:blue; color:white; width:100%">Cendol Dawet</button></td>
-                        <td><button style="background-color:red; color:white; width:100%">Bata Atos</button></td>
-                    </tr>
-                </table>
-                <button style="width:100%">Lihat Selengkapnya</button>
-            </div>
 
-            <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
-                <div>
-                    <img src="<?= base_url() ?>/images/profile/profile.jpg" alt="" style="border-radius:100%; margin-left:10px;" width="35">
-                    <a href="">Moh. Fathur Rohman</a> Pada (Date_time)
-                    <br>
-                </div>
-                <img src="<?= base_url() ?>/images/thread/wp1828933-programmer-wallpapers.jpg" style="display: block; margin-left: auto; margin-right: auto;" alt="Ceritanya ini foto" width="500">
-                <h5 style="padding: 20px 20px 0 20px;">ini contohnya adalah judul yang lumayan panjang</h5>
-                <hr>
-                <div style="padding: 0 30px">
-                    <img src="<?= base_url() ?>/images/profile/profile.jpg" alt="" style="border-radius:100%; margin-left:10px;" width="30">
-                    <a href="">Moh. Fathur Rohman</a> Ini contoh kalo misalnya ada yang comment
-                    <br>
-                    <a href="" style="padding-left:100px;">Suka</a> Pada (Date_time)
-                </div>
-                <table style="width:100%; text-align:center">
-                    <tr>
-                        <td><button style="background-color:blue; color:white; width:100%">Cendol Dawet</button></td>
-                        <td><button style="background-color:red; color:white; width:100%">Bata Atos</button></td>
-                    </tr>
-                </table>
-                <button style="width:100%">Lihat Selengkapnya</button>
-            </div>
+            <?php
+            $sql_post = mysqli_query($con, "SELECT * FROM post LIMIT 0, 10") or die(mysqli_error($con, ""));
+            if (mysqli_num_rows($sql_post) > 0) {
+                while ($post = mysqli_fetch_array($sql_post)) { ?>
+                    <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
+                        <div>
+                            <img src="<?= base_url() ?>/images/profile/profile.jpg" alt="" style="border-radius:100%; margin-left:10px;" width="35">
+                            <a href=""><?= $post['nama_user']; ?></a> Pada <?= $post['date_created']; ?>
+                            <br>
+                        </div>
+                        <?php if ($post['img_post'] != "") { ?>
+                            <img src="<?= base_url() ?>/images/thread/wp1828933-programmer-wallpapers.jpg" style="display: block; margin-left: auto; margin-right: auto;" alt="Ceritanya ini foto" width="500">
+                        <?php } ?>
+                        <h5 style="padding: 20px 20px 0 20px;"><?= $post['judul']; ?></h5>
+                        <hr>
+                        <div style="padding: 0 30px">
+                            <img src="<?= base_url() ?>/images/profile/profile.jpg" alt="" style="border-radius:100%; margin-left:10px;" width="30">
+                            <a href="">Moh. Fathur Rohman</a> Ini contoh kalo misalnya ada yang comment
+                            <br>
+                            <a href="" style="padding-left:100px;">Suka</a> Pada (Date_time)
+                        </div>
+                        <table style="width:100%; text-align:center">
+                            <tr>
+                                <td><button style="background-color:blue; color:white; width:100%">Cendol Dawet</button></td>
+                                <td><button style="background-color:red; color:white; width:100%">Bata Atos</button></td>
+                            </tr>
+                        </table>
+                        <button style="width:100%">Lihat Selengkapnya</button>
+                    </div>
+            <?php };
+            } ?>
 
             <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
                 <button style="width:100%">Load Thread</button>

@@ -1,16 +1,4 @@
-<?php
-include "config_chat.php";
-include "server.php";
-
-
-if (isset($_GET['logout'])) {
-    include "config_chat.php";
-    $sql = $dbh->prepare("UPDATE user SET status='1' WHERE username=?");
-    $sql->execute(array($_SESSION['username']));
-    session_destroy();
-    unset($_SESSION['username']);
-    header("location: index.php");
-} ?>
+<?php include "config.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">

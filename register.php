@@ -1,7 +1,4 @@
-<?php
-include "config_chat.php";
-include "server.php";
-?>
+<?php include "config.php"; ?>
 
 <!DOCTYPE html>
 <html>
@@ -28,11 +25,11 @@ include "server.php";
 
 		<div class="input-group">
 			<label>Username</label>
-			<input type="text" name="username" value="<?php echo $username; ?>">
+			<input type="text" name="username">
 		</div>
 		<div class="input-group">
 			<label>Email</label>
-			<input type="email" name="email" value="<?php echo $email; ?>">
+			<input type="email" name="email">
 		</div>
 		<div class="input-group">
 			<label>Password</label>
