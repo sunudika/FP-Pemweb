@@ -1,6 +1,6 @@
 <?php
-include "server.php";
 include "config_chat.php";
+include "server.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

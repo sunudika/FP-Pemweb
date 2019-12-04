@@ -1,6 +1,7 @@
 <?php
-include "server.php";
 include "config_chat.php";
+include "server.php";
+
 
 if (isset($_GET['logout'])) {
     include "config_chat.php";

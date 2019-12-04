@@ -1,4 +1,5 @@
 <?php
+
 // initializing variables
 $username = "";
 $email    = "";
