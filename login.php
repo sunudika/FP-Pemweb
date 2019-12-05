@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>coba</title>
+    <title>Login Page</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -25,6 +25,7 @@
             </div>
             <button class="btn btn-primary btn-block btn-lg btn-signin" type="submit" name="login_user">Sign in</button>
         </form><a href="#" class="forgot-password">Forgot your password?</a>
+        <a href="register.php">Daftar</a>
     </div>
 </body>
 

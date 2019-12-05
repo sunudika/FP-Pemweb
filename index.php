@@ -10,6 +10,7 @@
     <meta name="author" content="Kelompok 3">
     <title>FORMATIK - Main</title>
     <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="js/chat.js"></script>
     <?php include "css/include_css.php"; ?>
 </head>
 
