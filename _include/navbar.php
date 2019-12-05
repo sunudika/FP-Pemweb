@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="" style="text-align:center"><img src="<?= base_url() ?>/images/aset/logo3.png" alt="LOGO FORMATIK" height="50"></a>
+    <a class="navbar-brand" href="index.php" style="text-align:center"><img src="<?= base_url() ?>/images/aset/logo3.png" alt="LOGO FORMATIK" height="50"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -36,7 +36,7 @@
             <div class="col-3" style="">
                 <a href=""><i class="fas fa-bell"></i></a>
                 <a href=""><i class="fas fa-comment-dots"></i></a>
-                <a href=""><i class="fas fa-cog"></i></a>
+                <a href="setting.php"><i class="fas fa-cog"></i></a>
                 <a href=""><strong><?php
                                     if (isset($_SESSION['username'])) {
                                         echo $_SESSION['username'];

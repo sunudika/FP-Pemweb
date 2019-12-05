@@ -1,4 +1,10 @@
-<?php include "config.php" ?>
+<?php 
+    include "config.php";
+    $username = $_SESSION['username'];
+    $result = mysqli_query($con, "SELECT * FROM user WHERE username='$username'");
+    $data = mysqli_fetch_assoc($result);
+    $password = md5(mysqli_real_escape_string($con,$data['password']));
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,26 +29,10 @@
                         <table>
                             <tr>
                                 <td>
-                                    <label for="">Fullname</label><br>
-                                </td>
-                                <td>
-                                    <input type="text" name="fullname" class="form-control" value="fullname" required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
                                     <label for="">Username</label><br>
                                 </td>
                                 <td>
-                                    <input type="text" name="username" class="form-control" value="username" required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="">NPM</label><br>
-                                </td>
-                                <td>
-                                    <input type="text" name="npm" class="form-control" value="NPM" required>
+                                    <input type="text" name="username" class="form-control" value="<?php echo $data['username'] ?>" required>
                                 </td>
                             </tr>
                             <tr>
@@ -50,7 +40,7 @@
                                     <label for="">Email</label><br>
                                 </td>
                                 <td>
-                                    <input type="email" name="email" class="form-control" value="Email@email.com" required>
+                                    <input type="email" name="email" class="form-control" value="<?php echo $data['email'] ?>" required>
                                 </td>
                             </tr>
                             <tr>
@@ -58,7 +48,7 @@
                                     <label for="">Password</label><br>
                                 </td>
                                 <td>
-                                    <input type="password" name="password" class="form-control" placeholder="Ganti Password">
+                                    <input type="password" name="password" class="form-control" placeholder="Ganti Password" value="<?php echo $password; ?>">
                                 </td>
                             </tr>
                         </table>
