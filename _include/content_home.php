@@ -48,17 +48,19 @@
             <?php } ?>
 
             <?php
-            $sql_post = mysqli_query($con, "SELECT * FROM post LIMIT 0, 10") or die(mysqli_error($con, ""));
+            $sql_post = mysqli_query($con, "SELECT * FROM post JOIN user ON post.nama_user=user.username ORDER BY post.id DESC LIMIT 0, 10") or die(mysqli_error($con, ""));
             if (mysqli_num_rows($sql_post) > 0) {
-                while ($post = mysqli_fetch_array($sql_post)) { ?>
+                while ($post = mysqli_fetch_array($sql_post)) {
+                    $img_profile = $post['img_profile'];
+                    ?>
                     <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
                         <div>
-                            <img src="<?= base_url() ?>/images/profile/profile.jpg" alt="" style="border-radius:100%; margin-left:10px;" width="35">
+                            <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="35">
                             <a href="" style="color:black"><?= $post['nama_user']; ?></a> Pada <?= $post['date_created']; ?>
                             <br>
                         </div>
                         <?php if ($post['img_post'] != "") { ?>
-                            <img src="<?= base_url() ?>/images/thread/wp1828933-programmer-wallpapers.jpg" style="display: block; margin-left: auto; margin-right: auto;" alt="Ceritanya ini foto" width="500">
+                            <img src="<?= base_url() ?>/images/thread/<?= $post['img_post']; ?>" style="display: block; margin-left: auto; margin-right: auto;" alt="Ceritanya ini foto" width="500">
                         <?php } ?>
                         <h5 style="padding: 20px 20px 0 20px;"><?= $post['judul']; ?></h5>
                         <hr>
