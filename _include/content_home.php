@@ -53,7 +53,7 @@
                     <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
                         <div>
                             <img src="<?= base_url() ?>/images/profile/profile.jpg" alt="" style="border-radius:100%; margin-left:10px;" width="35">
-                            <a href=""><?= $post['nama_user']; ?></a> Pada <?= $post['date_created']; ?>
+                            <a href="" style="color:black"><?= $post['nama_user']; ?></a> Pada <?= $post['date_created']; ?>
                             <br>
                         </div>
                         <?php if ($post['img_post'] != "") { ?>
@@ -61,12 +61,19 @@
                         <?php } ?>
                         <h5 style="padding: 20px 20px 0 20px;"><?= $post['judul']; ?></h5>
                         <hr>
-                        <div style="padding: 0 30px">
-                            <img src="<?= base_url() ?>/images/profile/profile.jpg" alt="" style="border-radius:100%; margin-left:10px;" width="30">
-                            <a href="">Moh. Fathur Rohman</a> Ini contoh kalo misalnya ada yang comment
-                            <br>
-                            <a href="" style="padding-left:100px;">Suka</a> Pada (Date_time)
-                        </div>
+                        <?php
+                                $id_post = $post['id'];
+                                $sql_comment = mysqli_query($con, "SELECT * FROM comment WHERE id_post='$id_post'") or die(mysqli_error($con, ""));
+                                if (mysqli_num_rows($sql_comment) > 0) {
+                                    while ($comment = mysqli_fetch_array($sql_comment)) { ?>
+                                <div style="padding: 0 30px">
+                                    <a href=""><?= $comment['nama_user']; ?></a> <?= $comment['comment']; ?>
+                                    <br>
+                                    <a href="" style="padding-left:100px;">Suka</a> Pada <?= $comment['date_created']; ?>
+                                </div>
+                        <?php };
+                                } ?>
+
                         <table style="width:100%; text-align:center">
                             <tr>
                                 <td><button style="background-color:blue; color:white; width:100%">Cendol Dawet</button></td>
