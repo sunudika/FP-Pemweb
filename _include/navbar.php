@@ -26,12 +26,13 @@
     <div class="container">
         <div class="row" style="font-size:20px;">
             <div class="col" style="">
-                <a href="">SKRIPSI</a>
-                <a href="">KKN</a>
-                <a href="">PKL</a>
-                <a href="">SHITPOST</a>
-                <a href="">TUTORIAL</a>
-                <a href="">KARYA</a>
+                <?php
+                $sql_kategori = mysqli_query($con, "SELECT * FROM kategori") or die(mysqli_error($con, ""));
+                if (mysqli_num_rows($sql_kategori) > 0) {
+                    while ($kategori = mysqli_fetch_array($sql_kategori)) { ?>
+                        <a href=""><?= strtoupper($kategori['kategori']) ?></a>
+                <?php };
+                } ?>
             </div>
             <div class="col-3" style="">
                 <a href=""><i class="fas fa-bell"></i></a>
