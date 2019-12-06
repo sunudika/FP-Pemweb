@@ -118,7 +118,8 @@ if (isset($_POST['login_user'])) {
 }
 
 if (isset($_GET['logout'])) {
-    $sql = $dbh->prepare("UPDATE user SET status='1' WHERE username=?");
+    $username = $_SESSION['username'];
+    $sql = $dbh->prepare("UPDATE user SET status='1' WHERE username='$username'");
     $sql->execute(array($_SESSION['username']));
     session_destroy();
     unset($_SESSION['username']);
