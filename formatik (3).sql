@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Des 2019 pada 19.22
+-- Waktu pembuatan: 06 Des 2019 pada 23.42
 -- Versi server: 10.1.39-MariaDB
 -- Versi PHP: 7.3.5
 
@@ -171,7 +171,8 @@ INSERT INTO `messages` (`username`, `msg`, `posted`) VALUES
 ('rahmanboy987', 'laskdjalskdj', '2019-12-05 16:24:18'),
 ('rahmanboy987', 'asdasdas', '2019-12-05 16:41:38'),
 ('rahmanboy987', 'asdasd', '2019-12-05 23:51:35'),
-('rahmanboy987', 'fathur', '2019-12-07 01:22:34');
+('rahmanboy987', 'fathur', '2019-12-07 01:22:34'),
+('rahmannoob98', 'haloo', '2019-12-07 01:54:42');
 
 -- --------------------------------------------------------
 
@@ -220,7 +221,10 @@ INSERT INTO `post` (`id`, `judul`, `post`, `img_post`, `nama_user`, `id_komunita
 (24, 'haloooo', '', '', 'rahmanboy987', 0, '2019-12-05 04:52:06pm'),
 (25, 'haloooo', '', '', 'rahmanboy987', 0, '2019-12-05 04:55:59pm'),
 (26, 'haiii', '', '', 'rahmanboy987', 0, '2019-12-06 12:01:26am'),
-(27, 'haiii', '', '', 'rahmanboy987', 0, '2019-12-06 12:04:07am');
+(27, 'haiii', '', '', 'rahmanboy987', 0, '2019-12-06 12:04:07am'),
+(28, 'saaaaaaaaa', '', '', 'rahmanboy987', 0, '2019-12-07 01:25:02am'),
+(29, 'ini siapa', 'mbohh', '5deaa01309f1c.jpg', 'rahmannoob98', 0, '2019-12-07 01:38:11am'),
+(30, 'ini siapa', 'mbohh', '5deaa1ea1e681.jpg', 'rahmannoob98', 0, '2019-12-07 01:46:02am');
 
 -- --------------------------------------------------------
 
@@ -240,7 +244,7 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`id`, `toogle_maintainance`, `text_maintainance`, `datetime`) VALUES
-(1, 0, 'test', '2019-12-05 19:03:33');
+(1, 0, 'test', '2019-12-06 22:22:10');
 
 -- --------------------------------------------------------
 
@@ -256,7 +260,7 @@ CREATE TABLE `user` (
   `komunitas` varchar(64) NOT NULL,
   `email` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `img_profile` varchar(255) NOT NULL,
+  `img_profile` varchar(255) NOT NULL DEFAULT 'no_pic.jpg',
   `img_verification` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -268,7 +272,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `full_name`, `username`, `npm`, `komunitas`, `email`, `password`, `img_profile`, `img_verification`, `status`) VALUES
 (1, '', 'rahmanboy987', 0, '', 'rahmanboy987@gmail.com', '95eef42b904a343d9459b33679a31afe', 'profile.jpg', 'profile.jpg', 0),
 (21, '', 'sunu', 0, '', 'sunu@a', '97b54dd3af9daefa37ce9ebd5912f1bb', 'Sunu_Almet.jpg', 'Sunu Almet.jpg', 0),
-(22, '', 'fathur', 0, '', 'fathur@a.com', '5e48745e9f08a449a9f2be33097a4c39', '', 'ic_collections_white_18dp.png', 0);
+(22, '', 'fathur', 0, '', 'fathur@a.com', '5e48745e9f08a449a9f2be33097a4c39', 'no_pic.jpg', 'ic_collections_white_18dp.png', 0),
+(25, '', 'rahmannoob98', 0, '', 'rahmannoob98@gmail.com', '95eef42b904a343d9459b33679a31afe', 'no_pic.jpg', '5deaa3e03db8e.jpg', 1);
 
 --
 -- Indexes for dumped tables
@@ -372,7 +377,7 @@ ALTER TABLE `log`
 -- AUTO_INCREMENT untuk tabel `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT untuk tabel `setting`
@@ -384,7 +389,7 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
