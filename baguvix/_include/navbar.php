@@ -20,18 +20,8 @@
                 <a class="dropdown-item" href="<?= base_url() ?>">
                     Dashboard
                 </a>
-                <a class="dropdown-item" href="<?= base_url() ?>/hasil.php">
-                    Hasil Peserta
-                </a>
                 <a class="dropdown-item" href="<?= base_url() ?>/Settings.php">
                     Settings
-                </a>
-                <hr>
-                <a class="dropdown-item" href="<?= base_url() ?>/before.php">
-                    Countdown
-                </a>
-                <a class="dropdown-item" href="<?= base_url() ?>/peraturan.php">
-                    Peraturan
                 </a>
                 <hr>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
