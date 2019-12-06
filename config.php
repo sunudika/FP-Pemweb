@@ -169,3 +169,9 @@ if (isset($_POST['update-profile'])) {
     $_SESSION['username'] = $username;
     header('location: setting.php');
 }
+
+$sql_settings = mysqli_query($con, "SELECT * FROM setting");
+while ($settings = mysqli_fetch_array($sql_settings)) {
+    $toogle_maintainance = $settings['toogle_maintainance'];
+    $text_maintainance = $settings['text_maintainance'];
+};

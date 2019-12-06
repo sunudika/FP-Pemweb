@@ -3,10 +3,21 @@ include "config.php";
 if (!isset($_SESSION['admin'])) {
   echo "<script>window.location='" . base_url() . "';</script>";
 } else {
-  if (isset($_POST['add'])) {
-    include "_auth/add.php";
-    echo "<script>window.location='" . base_url() . "';</script>";
-  } ?>
+
+  $sql_settings = mysqli_query($con, "SELECT * FROM setting");
+  while ($settings = mysqli_fetch_array($sql_settings)) {
+    $toogle_maintainance = $settings['toogle_maintainance'];
+  };
+
+  $sql_total_admin = mysqli_query($con, "SELECT * FROM admin");
+  $total_admin = mysqli_num_rows($sql_total_admin);
+
+  $sql_total_user = mysqli_query($con, "SELECT * FROM user");
+  $total_user = mysqli_num_rows($sql_total_user);
+
+  $sql_total_kategori = mysqli_query($con, "SELECT * FROM kategori");
+  $total_kategori = mysqli_num_rows($sql_total_kategori);
+  ?>
 
   <!DOCTYPE html>
   <html lang="en">
@@ -52,7 +63,7 @@ if (!isset($_SESSION['admin'])) {
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Admin</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_admin ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -69,7 +80,7 @@ if (!isset($_SESSION['admin'])) {
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total User</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_user ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -86,16 +97,7 @@ if (!isset($_SESSION['admin'])) {
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Categories</div>
-                        <div class="row no-gutters align-items-center">
-                          <div class="col-auto">
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                          </div>
-                          <div class="col">
-                            <div class="progress progress-sm mr-2">
-                              <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= $total_kategori ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -112,7 +114,12 @@ if (!isset($_SESSION['admin'])) {
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Maintainance Status</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php if ($toogle_maintainance == 0) {
+                                                                                echo "NO!";
+                                                                              } else if ($toogle_maintainance == 1) {
+                                                                                echo "YES!";
+                                                                              }; ?>
+                        </div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-comments fa-2x text-gray-300"></i>
