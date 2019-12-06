@@ -163,12 +163,12 @@ if (!isset($_SESSION['admin'])) {
                             <td><?= $data['id'] ?></td>
                             <td>
                               <?php if ($data['img_profile'] != null) { ?>
-                                <img src="http://localhost/formatik/images/profile/<?= $data['img_profile'] ?>" alt="" height="50">
+                                <img src="<?= very_base_url() ?>/images/profile/<?= $data['img_profile'] ?>" alt="" height="50">
                               <?php } ?>
                             </td>
                             <td>
-                              <?php if ($data['img_verification'] != null) { ?>
-                                <img src="http://localhost/formatik/images/img_verification/<?= $data['img_verification'] ?>" alt="" height="50">
+                              <?php if ($data['img_verification'] != null) {  ?>
+                                <img src="<?= very_base_url() ?>/images/img_verification/<?= $data['img_verification'] ?>" alt="" height="50">
                               <?php } ?>
                             </td>
                             <td><?= $data['username'] ?></td>

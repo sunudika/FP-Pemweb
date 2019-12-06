@@ -16,3 +16,13 @@ function base_url($url = null)
         return $base_url;
     }
 }
+
+function very_base_url($url = null)
+{
+    $base_url = "http://localhost/formatik";
+    if ($url != null) {
+        return $base_url . "/" . $url;
+    } else {
+        return $base_url;
+    }
+}
