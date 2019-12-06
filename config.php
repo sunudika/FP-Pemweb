@@ -45,11 +45,6 @@ if (isset($_POST['reg_user'])) {
     $extphoto = explode('.', $photo);
     $extphoto = strtolower(end($extphoto));
 
-    if (!in_array($extphoto, $extphotovalid)) {
-        echo "<script>alert('File yg anda upload bukan gambar');</script>";
-        return false;
-    }
-
     if ($photosize > 3000000) {
         echo "<script>alert('Gambar lebih dari 3 MB');</script>";
         return false;
