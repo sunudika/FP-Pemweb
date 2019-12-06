@@ -70,7 +70,7 @@ if (isset($_POST['reg_user'])) {
     }
 
     $user_check_query = "SELECT * FROM user WHERE username='$username' OR email='$email' LIMIT 1";
-    $result = mysqli_query($db, $user_check_query);
+    $result = mysqli_query($con, $user_check_query);
     $user = mysqli_fetch_assoc($result);
 
     if ($user) { // if user exists
@@ -155,4 +155,18 @@ if (isset($_POST['post_kirim'])) {
         move_uploaded_file($_FILES['photo']['tmp_name'], 'images/thread/' . $photo);
         $sql_add = mysqli_query($con, "INSERT INTO post (judul, post, img_post, nama_user, id_komunitas, date_created) VALUES ('$judul','$isi','$photo','$nama','0','$post_date')");
     }
+}
+
+if(isset($_POST['update-profile'])) {
+    $username = mysqli_real_escape_string($con, $_POST['username']);
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+
+    $user_check_query = "SELECT * FROM user WHERE username='$username' OR email='$email' LIMIT 1";
+    $result = mysqli_query($con, $user_check_query);
+    $user = mysqli_fetch_assoc($result);
+    $username_lama = $user['username'];
+
+    mysqli_query($con, "UPDATE user SET username='$username', email='$email' WHERE username='$username_lama'");
+    $_SESSION['username'] = $username;
+    header('location: setting.php');
 }
