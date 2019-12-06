@@ -40,7 +40,6 @@ if (!isset($_SESSION['admin'])) {
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
               <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-              <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
             </div>
 
             <!-- Content Row -->
@@ -136,6 +135,7 @@ if (!isset($_SESSION['admin'])) {
                       <tr>
                         <th>Id. </th>
                         <th>Images</th>
+                        <th>KTM Images</th>
                         <th>Username</th>
                         <th>Email</th>
                         <th>Status</th>
@@ -146,6 +146,7 @@ if (!isset($_SESSION['admin'])) {
                       <tr>
                         <th>Id. </th>
                         <th>Images</th>
+                        <th>KTM Images</th>
                         <th>Username</th>
                         <th>Email</th>
                         <th>Status</th>
@@ -163,6 +164,11 @@ if (!isset($_SESSION['admin'])) {
                             <td>
                               <?php if ($data['img_profile'] != null) { ?>
                                 <img src="http://localhost/formatik/images/profile/<?= $data['img_profile'] ?>" alt="" height="50">
+                              <?php } ?>
+                            </td>
+                            <td>
+                              <?php if ($data['img_verification'] != null) { ?>
+                                <img src="http://localhost/formatik/images/img_verification/<?= $data['img_verification'] ?>" alt="" height="50">
                               <?php } ?>
                             </td>
                             <td><?= $data['username'] ?></td>

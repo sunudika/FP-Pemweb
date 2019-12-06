@@ -31,28 +31,6 @@ if (isset($_POST['reg_user'])) {
     $password_1 = mysqli_real_escape_string($con, $_POST['password_1']);
     $password_2 = mysqli_real_escape_string($con, $_POST['password_2']);
 
-    $photo = trim(mysqli_real_escape_string($con, $_FILES['photo']['name']));
-    $error = trim(mysqli_real_escape_string($con, $_FILES['photo']['error']));
-    $tmpphoto = trim(mysqli_real_escape_string($con, $_FILES['photo']['tmp_name']));
-    $photosize = trim(mysqli_real_escape_string($con, $_FILES['photo']['size']));
-
-    if ($error === 4) {
-        echo "<script>alert('Gambar belum dipilih');</script>";
-        return false;
-    }
-
-    $extphotovalid = ['jpg', 'jpeg', 'png'];
-    $extphoto = explode('.', $photo);
-    $extphoto = strtolower(end($extphoto));
-
-    if ($photosize > 3000000) {
-        echo "<script>alert('Gambar lebih dari 3 MB');</script>";
-        return false;
-    }
-
-    $photo = uniqid() . '.' . $extphoto;
-    move_uploaded_file($_FILES['photo']['tmp_name'], 'images/profile/' . $photo);
-
     if (empty($username)) {
         array_push($errors, "Username is required");
     }
@@ -83,10 +61,30 @@ if (isset($_POST['reg_user'])) {
         }
     }
 
+    $photo = trim(mysqli_real_escape_string($con, $_FILES['image']['name']));
+    $error = trim(mysqli_real_escape_string($con, $_FILES['image']['error']));
+    $tmpphoto = trim(mysqli_real_escape_string($con, $_FILES['image']['tmp_name']));
+    $photosize = trim(mysqli_real_escape_string($con, $_FILES['image']['size']));
+
     if (count($errors) == 0) {
         $password = md5($password_1);
 
-        mysqli_query($con, "INSERT INTO user (username, email, password, img_verification) VALUES('$username', '$email', '$password', '$photo')");
+        if ($error == 4) {
+            array_push($errors, "KTM foto are not uploaded yet");
+        } else {
+            $extphotovalid = ['jpg', 'jpeg', 'png'];
+            $extphoto = explode('.', $photo);
+            $extphoto = strtolower(end($extphoto));
+
+            if (!in_array($extphoto, $extphotovalid)) {
+                array_push($errors, "Photo that u're uploaded is not supported format");
+            }
+
+            $photo = uniqid() . '.' . $extphoto;
+
+            move_uploaded_file($_FILES['image']['tmp_name'], 'images/img_verification/' . $photo);
+            mysqli_query($con, "INSERT INTO user (username, email, password, img_verification) VALUES('$username', '$email', '$password', '$photo')");
+        }
         $_SESSION['username'] = $username;
         $_SESSION['success'] = "You are now logged in";
         header('location: index.php');
@@ -157,7 +155,7 @@ if (isset($_POST['post_kirim'])) {
     }
 }
 
-if(isset($_POST['update-profile'])) {
+if (isset($_POST['update-profile'])) {
     $username = mysqli_real_escape_string($con, $_POST['username']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
 

@@ -1,9 +1,9 @@
-<?php 
-    include "config.php";
-    $username = $_SESSION['username'];
-    $result = mysqli_query($con, "SELECT * FROM user WHERE username='$username'");
-    $data = mysqli_fetch_assoc($result);
-    $password = md5(mysqli_real_escape_string($con,$data['password']));
+<?php
+include "config.php";
+$username = $_SESSION['username'];
+$result = mysqli_query($con, "SELECT * FROM user WHERE username='$username'");
+$data = mysqli_fetch_assoc($result);
+$password = md5(mysqli_real_escape_string($con, $data['password']));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,18 +18,19 @@
 </head>
 
 <body class="bg-dark">
-    <?php include "_include/navbar.php" ?>
-    <?php include "_include/sidebar.php" ?>
-
+    <?php include "_include/navbar.php"; ?>
     <div class="container">
         <div class="row">
+            <?php
+            include "_include/sidebar.php"; ?>
+
             <div class="col">
                 <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
                     <form action="setting.php" method="post" enctype="multipart/form-data">
-                    <div style="margin: 0; position: absolute; top:50%; left:60%; margin-right:-40%; transform: translate(-50%, -50%);">
-                        <?php echo $data['img_verification'] ?> <br>
-                        Ganti Foto: <input type="file" name="image"><br>
-                    </div>
+                        <div style="margin: 0; position: absolute; top:50%; left:60%; margin-right:-40%; transform: translate(-50%, -50%);">
+                            <?php echo $data['img_verification'] ?> <br>
+                            Ganti Foto: <input type="file" name="image"><br>
+                        </div>
                         <table>
                             <tr>
                                 <td>
@@ -62,9 +63,11 @@
             </div>
         </div>
     </div>
-    <?php include "_include/footer.php" ?>
 
-    <?php include "js/include_js.php" ?>
+    <?php
+    include "_include/footer.php";
+    include "js/include_js.php";
+    ?>
 </body>
 
 </html>

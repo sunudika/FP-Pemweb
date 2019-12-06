@@ -15,9 +15,7 @@
 </head>
 
 <body class="bg-dark">
-    <?php
-    include "_include/navbar.php";
-    ?>
+    <?php include "_include/navbar.php"; ?>
     <div class="container">
         <div class="row">
             <?php
