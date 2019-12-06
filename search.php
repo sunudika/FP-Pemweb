@@ -22,11 +22,12 @@
         <div class="row">
             <?php
             include "_include/sidebar.php";
-            include "_include/content_home.php"; ?>
+            include "_include/content_search.php"; ?>
         </div>
     </div>
 
     <?php
+
     if (isset($_SESSION['username'])) {
         include "_include/content_chat.php";
     }
