@@ -49,7 +49,7 @@
 			<button type="submit" class="btn" name="reg_user">Register</button>
 		</div>
 		<div class="input-group">
-			<button type="submit" class="btn-sign" name="sign-in">Sign In</button>
+			<a href="login.php" class="btn-sign" style="text-align: center;">Sign In</a>
 		</div>
 
 
