@@ -6,7 +6,7 @@ if ($toogle_maintainance == 1) {
     if (!isset($_SESSION['username'])) {
         header('location: index.php');
     }
-    ?>
+?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -29,8 +29,8 @@ if ($toogle_maintainance == 1) {
         <div class="container">
             <div class="row">
                 <?php
-                    include "_include/sidebar.php";
-                    include "_include/content_home.php"; ?>
+                    include "_include/sidebar_teman.php";
+                    include "_include/content_profile_teman.php"; ?>
             </div>
         </div>
 

@@ -42,7 +42,7 @@
                 <a href=""><i class="fas fa-bell"></i></a>
                 <a href=""><i class="fas fa-comment-dots"></i></a>
                 <a href="setting.php"><i class="fas fa-cog"></i></a>
-                <a href=""><strong><?php
+                <a href="<?php echo "profile_teman.php?username=".$_SESSION['username']; ?>"><strong><?php
                                     if (isset($_SESSION['username'])) {
                                         echo $_SESSION['username'];
                                     } else {

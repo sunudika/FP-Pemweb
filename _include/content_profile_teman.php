@@ -1,24 +1,3 @@
-<div class="col-8">
-    <?php if (isset($_SESSION['username'])) {
-        $username = $_SESSION['username'];
-        $sql_profile = mysqli_query($con, "SELECT * FROM user WHERE username='$username'") or die(mysqli_error($con, ""));
-        if (mysqli_num_rows($sql_profile) > 0) {
-            while ($profile = mysqli_fetch_array($sql_profile)) {
-                $img_profile = $profile['img_profile'];
-            };
-        } ?>
-        <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
-            <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40">
-            <a href="" style="color:black"><?= $_SESSION['username']; ?></a>
-            <form action="" method="post" enctype="multipart/form-data">
-                <input type="text" name="judul" placeholder="judul" style="display: block; margin-left: auto; margin-right: auto; width:99%">
-                <textarea name="isi" cols="100" rows="3" style="display: block; margin-left: auto; margin-right: auto;" placeholder="Ketik postingan anda disini"></textarea>
-                <input type="file" name="photo" value="upload foto"><br>
-                <input type="submit" name="post_kirim" class="btn btn-secondary" value="kirim" style="width:100%;">
-            </form>
-        </div>
-    <?php } ?>
-
     <?php
     $sql_post = mysqli_query($con, "SELECT * FROM post JOIN user ON post.nama_user=user.username ORDER BY post.id DESC LIMIT 0, 10") or die(mysqli_error($con, ""));
     if (mysqli_num_rows($sql_post) > 0) {
