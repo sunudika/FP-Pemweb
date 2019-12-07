@@ -18,7 +18,16 @@ if ($toogle_maintainance == 1) {
     </head>
 
     <body>
+        
         <div class="login-card"><img src="images/aset/logo3.png" class="profile-img-card" />
+            <?php
+            if (count($errors) > 0) { ?>
+            <div class="error">
+                <?php foreach ($errors as $error) { ?>
+                    <p><?php echo $error ?></p>
+                <?php } ?>
+            </div>
+            <?php } ?>
             <p class="profile-name-card"> </p>
             <form class="form-signin" method="post" action="login.php">
                 <input class="form-control" type="text" name="username" required placeholder="Username" autofocus id="inputEmail" />
