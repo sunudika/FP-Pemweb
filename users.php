@@ -6,4 +6,3 @@
     while($r=$sql->fetch()) {
         echo "<div class='user'>{$r['username']}</div>";
     }
-?>
