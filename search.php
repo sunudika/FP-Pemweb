@@ -15,6 +15,7 @@ if ($toogle_maintainance == 1) {
         <title>FORMATIK - Main</title>
         <script src="//code.jquery.com/jquery-latest.js"></script>
         <script src="js/chat.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/search.css">
         <?php include "css/include_css.php"; ?>
     </head>
 
@@ -29,6 +30,34 @@ if ($toogle_maintainance == 1) {
                     include "_include/content_search.php"; ?>
             </div>
         </div>
+
+<!--mulai dr sini-->
+        <div class="search">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="kolom">
+                    <ul class="nav flex-column">
+                      <li class="nav-item">
+                        <a class="nav-link active" href="#">Thread</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Community</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Users</a>
+                      </li>
+                    </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <!--- isi buat hasil search-->
+                </div>
+            </div>
+        </div>
+        
+<!-- Sampai sini-->
+
 
         <?php
 
