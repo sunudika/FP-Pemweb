@@ -12,7 +12,8 @@
 <div class="col-3">
     <div class="bg-light" style="padding:20px; border-radius:20px; margin-top:20px;">
         <h6 style="text-align:center">PROFIL</h6>
-        <h2><?php echo $data['username']; ?></h2>
-        <p><?php echo $data['email']; ?></p>
+        <img src="<?= base_url() ?>/images/profile/<?= $data['img_profile'] ?>" alt="" style="border-radius:100%; margin-top:10px; margin-bottom:10px" width="100" height="100">
+        <h3 style="text-align: center;"><?php echo $data['username']; ?></h3>
+        <p style="text-align: center;"><?php echo $data['email']; ?></p>
     </div>
 </div>

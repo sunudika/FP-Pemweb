@@ -31,7 +31,7 @@ if ($toogle_maintainance == 1) {
                     <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
                         <h1 style="color: white; text-align:center; margin-bottom:100px;">EDIT PROFIL</h1>
                         <div style="margin: 0; position: absolute; top:60%; left:70%; margin-right:-40%; transform: translate(-50%, -50%);">
-                            <img src="<?= base_url() ?>/images/profile/<?= $data['img_profile'] ?>" alt="" style="border-radius:100%; margin-top:10px;" width="100">
+                            <img src="<?= base_url() ?>/images/profile/<?= $data['img_profile'] ?>" alt="" style="border-radius:100%; margin-top:10px;" width="100" height="100">
                         </div>
                         
                         <form action="setting.php" method="post" enctype="multipart/form-data">
@@ -60,7 +60,7 @@ if ($toogle_maintainance == 1) {
                                         <label for="">Password</label><br>
                                     </td>
                                     <td>
-                                        <input type="password" name="password" class="form-control" placeholder="Ganti Password" value="<?php echo $password; ?>">
+                                        <input type="password" name="password_1" class="form-control" placeholder="Ganti Password" value="<?php echo $password; ?>">
                                     </td>
                                 </tr>
                                 <tr>
@@ -68,7 +68,7 @@ if ($toogle_maintainance == 1) {
                                         <label for="">Konfirmasi Password</label><br>
                                     </td>
                                     <td>
-                                        <input type="password" name="password" class="form-control" placeholder="Ganti Password" value="<?php echo $password; ?>">
+                                        <input type="password" name="password_2" class="form-control" placeholder="Ganti Password" value="<?php echo $password; ?>">
                                     </td>
                                 </tr>
                             </table>

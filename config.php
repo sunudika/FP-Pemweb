@@ -32,20 +32,34 @@ if (isset($_POST['reg_user'])) {
     $password_2 = mysqli_real_escape_string($con, $_POST['password_2']);
 
     if (empty($username)) {
-        array_push($errors, "Username is required");
+        array_push($errors, "Username harus diisi");
     }
     if (empty($email)) {
-        array_push($errors, "Email is required");
+        array_push($errors, "Email harus diisi");
     }
     if (empty($password_1)) {
-        array_push($errors, "Password is required");
+        array_push($errors, "Password harus diisi");
     }
     if (strlen($password_1) <= 6) {
-        array_push($errors, "Password needs to be 6 or more chars long");
+        array_push($errors, "Password minimal 6 huruf");
     }
     if ($password_1 != $password_2) {
-        array_push($errors, "The two passwords do not match");
+        array_push($errors, "Password tidak sama");
     }
+    if ($error == 4) {
+        array_push($errors, "KTM photo is not uploaded yet");
+    } else {
+        $extphotovalid = ['jpg', 'jpeg', 'png'];
+        $extphoto = explode('.', $photo);
+        $extphoto = strtolower(end($extphoto));
+
+        if (!in_array($extphoto, $extphotovalid)) {
+            array_push($errors, "Photo that u're uploaded is not supported format");
+        }
+
+        $photo = uniqid() . '.' . $extphoto;
+
+        move_uploaded_file($_FILES['image']['tmp_name'], 'images/img_verification/' . $photo);
 
     $user_check_query = "SELECT * FROM user WHERE username='$username' OR email='$email' LIMIT 1";
     $result = mysqli_query($con, $user_check_query);
@@ -68,21 +82,6 @@ if (isset($_POST['reg_user'])) {
 
     if (count($errors) == 0) {
         $password = md5($password_1);
-
-        if ($error == 4) {
-            array_push($errors, "KTM foto are not uploaded yet");
-        } else {
-            $extphotovalid = ['jpg', 'jpeg', 'png'];
-            $extphoto = explode('.', $photo);
-            $extphoto = strtolower(end($extphoto));
-
-            if (!in_array($extphoto, $extphotovalid)) {
-                array_push($errors, "Photo that u're uploaded is not supported format");
-            }
-
-            $photo = uniqid() . '.' . $extphoto;
-
-            move_uploaded_file($_FILES['image']['tmp_name'], 'images/img_verification/' . $photo);
             mysqli_query($con, "INSERT INTO user (username, email, password, img_verification) VALUES('$username', '$email', '$password', '$photo')");
         }
         $_SESSION['username'] = $username;
@@ -166,13 +165,19 @@ if (isset($_POST['post_kirim'])) {
 if (isset($_POST['update-profile'])) {
     $username = mysqli_real_escape_string($con, $_POST['username']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
+    
+    $image = $_FILES['image']['name'];  
+
+    $target = "images/profile/".basename($image);
+
+    move_uploaded_file($_FILES['image']['tmp_name'], $target);
 
     $user_check_query = "SELECT * FROM user WHERE username='$username' OR email='$email' LIMIT 1";
     $result = mysqli_query($con, $user_check_query);
     $user = mysqli_fetch_assoc($result);
     $username_lama = $user['username'];
 
-    mysqli_query($con, "UPDATE user SET username='$username', email='$email' WHERE username='$username_lama'");
+    mysqli_query($con, "UPDATE user SET username='$username', email='$email', img_profile='$image' WHERE username='$username_lama'");
     $_SESSION['username'] = $username;
     header('location: setting.php');
 }

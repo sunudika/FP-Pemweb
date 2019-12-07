@@ -9,7 +9,7 @@
         } ?>
         <?php if($_SESSION['username'] === $username) { ?>
         <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
-            <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40">
+            <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40" height="40px">
             <a href="" style="color:black"><?= $_SESSION['username']; ?></a>
             <form action="" method="post" enctype="multipart/form-data">
                 <input type="text" name="judul" placeholder="judul" style="display: block; margin-left: auto; margin-right: auto; width:99%">
@@ -28,7 +28,7 @@
             ?>
             <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
                 <div>
-                    <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="35">
+                    <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40px" height="40px">
                     <a href="<?php echo "profile_teman.php?username=".$post['nama_user']; ?>" style="color:black"><?= $post['nama_user']; ?></a> Pada <?= $post['date_created']; ?>
                     <br>
                 </div>

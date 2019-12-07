@@ -5,11 +5,12 @@
         if (mysqli_num_rows($sql_profile) > 0) {
             while ($profile = mysqli_fetch_array($sql_profile)) {
                 $img_profile = $profile['img_profile'];
+                $username = $profile['username'];
             };
         } ?>
         <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
-            <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40">
-            <a href="" style="color:black"><?= $_SESSION['username']; ?></a>
+            <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40" height="40px">
+            <a href="<?php echo "profile_teman.php?username=".$username; ?>" style="color:black"><?= $_SESSION['username']; ?></a>
             <form action="" method="post" enctype="multipart/form-data">
                 <input type="text" name="judul" placeholder="judul" style="display: block; margin-left: auto; margin-right: auto; width:99%" requied>
                 <textarea name="isi" cols="100" rows="3" style="display: block; margin-left: auto; margin-right: auto;" placeholder="Ketik postingan anda disini"></textarea>
@@ -27,7 +28,7 @@
             ?>
             <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
                 <div>
-                    <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="35">
+                    <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40px" height="40px">
                     <a href="<?php echo "profile_teman.php?username=".$post['nama_user']; ?>" style="color:black"><?= $post['nama_user']; ?></a> Pada <?= $post['date_created']; ?>
                     <br>
                 </div>
