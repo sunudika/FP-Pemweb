@@ -1,4 +1,4 @@
-<div class="col-8">
+<div class="col-sm-8">
     <?php if (isset($_SESSION['username'])) {
         $username = $_SESSION['username'];
         $sql_profile = mysqli_query($con, "SELECT * FROM user WHERE username='$username'") or die(mysqli_error($con, ""));
@@ -13,7 +13,7 @@
             <a href="<?php echo "profile_teman.php?username=".$username; ?>" style="color:black"><?= $_SESSION['username']; ?></a>
             <form action="" method="post" enctype="multipart/form-data">
                 <input type="text" name="judul" placeholder="judul" style="display: block; margin-left: auto; margin-right: auto; width:99%" requied>
-                <textarea name="isi" cols="100" rows="3" style="display: block; margin-left: auto; margin-right: auto;" placeholder="Ketik postingan anda disini"></textarea>
+                <textarea name="isi" rows="3" style="display: block; margin-left: auto; margin-right: auto; width:99%" placeholder="Ketik postingan anda disini"></textarea>
                 <input type="file" name="photo" value="upload foto"><br>
                 <input type="submit" name="post_kirim" class="btn btn-secondary" value="kirim" style="width:100%;">
             </form>
@@ -33,7 +33,7 @@
                     <br>
                 </div>
                 <?php if ($post['img_post'] != "") { ?>
-                    <img src="<?= base_url() ?>/images/thread/<?= $post['img_post']; ?>" style="display: block; margin-left: auto; margin-right: auto;" alt="Ceritanya ini foto" width="500">
+                    <img src="<?= base_url() ?>/images/thread/<?= $post['img_post']; ?>" style="display: block; margin-left: auto; margin-right: auto; width:70%;" alt="Ceritanya ini foto">
                 <?php } ?>
                 <h5 style="padding: 20px 20px 0 20px;"><?= $post['judul']; ?></h5>
                 <hr>
