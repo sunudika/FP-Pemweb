@@ -23,7 +23,7 @@
             $sql_user = mysqli_query($con, "SELECT * FROM user LIMIT 0, 6") or die(mysqli_error($con, ""));
             if (mysqli_num_rows($sql_user) > 0) {
                 while ($user = mysqli_fetch_array($sql_user)) { ?>
-                    <li><a href="">
+                    <li><a href="<?php echo "profile_teman.php?username=" . $user['username']; ?>">
                             <?= substr($user['username'], 0, 8);
                                     if (strlen($user['username']) >= 8) {
                                         echo "...";
