@@ -2,9 +2,6 @@
 <div class="chat-popup" id="myForm">
     <div id="content" style="margin-top:10px;height:100%;">
         <div class="chat">
-            <div class="users">
-                <?php include "users.php"; ?>
-            </div>
             <div class="chatbox">
                 <?php
                 if (isset($_SESSION['username'])) {
