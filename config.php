@@ -138,7 +138,7 @@ if (isset($_POST['post_kirim'])) {
     $photosize = trim(mysqli_real_escape_string($con, $_FILES['photo']['size']));
 
     if ($error == 4) {
-        $sql_add = mysqli_query($con, "INSERT INTO post (judul, post, nama_user, id_komunitas, date_created) VALUES ('$judul','$isi','$nama','0','$post_date')");
+        $sql_add = mysqli_query($con, "INSERT INTO post (judul, post, nama_user, date_created) VALUES ('$judul','$isi','$nama','$post_date')");
     } else {
         $extphotovalid = ['jpg', 'jpeg', 'png'];
         $extphoto = explode('.', $photo);
@@ -152,7 +152,7 @@ if (isset($_POST['post_kirim'])) {
         $photo = uniqid() . '.' . $extphoto;
 
         move_uploaded_file($_FILES['photo']['tmp_name'], 'images/thread/' . $photo);
-        $sql_add = mysqli_query($con, "INSERT INTO post (judul, post, img_post, nama_user, id_komunitas, date_created) VALUES ('$judul','$isi','$photo','$nama','0','$post_date')");
+        $sql_add = mysqli_query($con, "INSERT INTO post (judul, post, img_post, nama_user, date_created) VALUES ('$judul','$isi','$photo','$nama','$post_date')");
     }
 }
 
