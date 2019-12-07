@@ -15,7 +15,7 @@
                 <input type="text" name="judul" placeholder="judul" style="display: block; margin-left: auto; margin-right: auto; width:99%">
                 <textarea name="isi" cols="100" rows="3" style="display: block; margin-left: auto; margin-right: auto;" placeholder="Ketik postingan anda disini"></textarea>
                 <input type="file" name="photo" value="upload foto"><br>
-                <input type="submit" name="post_kirim" class="btn btn-secondary" value="kirim" style="width:100%;">
+                <input type="submit" name="post_kirim" class="btn btn-secondary" value="profil" style="width:100%;">
             </form>
         </div>
     <?php }else { } } ?>

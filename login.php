@@ -19,7 +19,7 @@ if ($toogle_maintainance == 1) {
 
     <body>
         
-        <div class="login-card"><img src="images/aset/logo3.png" class="profile-img-card" />
+        <div class="login-card"> <a class="navbar-brand" href="<?= base_url() ?>"><img src="<?= base_url() ?>/images/aset/logo3.png" alt="LOGO FORMATIK" height="50"></a>
             <?php
             if (count($errors) > 0) { ?>
             <div class="error">

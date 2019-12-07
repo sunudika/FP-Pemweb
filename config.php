@@ -127,6 +127,9 @@ if (isset($_GET['logout'])) {
 }
 
 if (isset($_POST['post_kirim'])) {
+    $sql_post = mysqli_query($con, "SELECT * FROM post JOIN user ON post.nama_user=user.username ORDER BY post.id DESC LIMIT 0, 10") or die(mysqli_error($con, ""));
+    $post = mysqli_fetch_array($sql_post);
+
     $judul = mysqli_real_escape_string($con, $_POST['judul']);
     $isi = mysqli_real_escape_string($con, $_POST['isi']);
     $nama = $_SESSION['username'];
@@ -154,6 +157,9 @@ if (isset($_POST['post_kirim'])) {
         move_uploaded_file($_FILES['photo']['tmp_name'], 'images/thread/' . $photo);
         $sql_add = mysqli_query($con, "INSERT INTO post (judul, post, img_post, nama_user, date_created) VALUES ('$judul','$isi','$photo','$nama','$post_date')");
     }
+    if($_POST['post_kirim'] === 'profil') {
+        header("location: profile_teman.php?username=".$post['nama_user']);
+    }else
     echo "<script>window.location='" . base_url() . "';</script>";
 }
 
