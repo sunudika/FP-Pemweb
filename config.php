@@ -154,6 +154,7 @@ if (isset($_POST['post_kirim'])) {
         move_uploaded_file($_FILES['photo']['tmp_name'], 'images/thread/' . $photo);
         $sql_add = mysqli_query($con, "INSERT INTO post (judul, post, img_post, nama_user, date_created) VALUES ('$judul','$isi','$photo','$nama','$post_date')");
     }
+    echo "<script>window.location='" . base_url() . "';</script>";
 }
 
 if (isset($_POST['update-profile'])) {

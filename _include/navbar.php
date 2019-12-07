@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="<?= base_url() ?>" style="text-align:center"><img src="<?= base_url() ?>/images/aset/logo3.png" alt="LOGO FORMATIK" height="50"></a>
-    
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,7 +10,7 @@
         <form class="form-inline my-2 my-lg-0" method="get" action="search.php">
             <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-            
+
             <?php if (!isset($_SESSION['username'])) { ?>
                 <a href="login.php" style="color:white; margin-left: 10px;">LOGIN</a>
                 <p style="color:white; margin:10px;">|</p>
@@ -39,16 +39,14 @@
                 } ?>
             </div>
             <div class="col-3" style="">
-                <a href="index.php"><i class="fas fa-home"></i></a>
                 <a href=""><i class="fas fa-bell"></i></a>
-                <a href="setting.php"><i class="fas fa-cog"></i></a>
-                <a href="<?php echo "profile_teman.php?username=".$_SESSION['username']; ?>"><strong><?php
-                                    if (isset($_SESSION['username'])) {
-                                        echo $_SESSION['username'];
-                                    } else {
-                                        echo "guest";
-                                    }
-                                    ?></strong></a>
+                <a href="setting.php"><i class="fas fa-cog"></i> <strong><?php
+                                                                            if (isset($_SESSION['username'])) {
+                                                                                echo $_SESSION['username'];
+                                                                            } else {
+                                                                                echo "guest";
+                                                                            }
+                                                                            ?></strong></a>
             </div>
         </div>
     </div>
