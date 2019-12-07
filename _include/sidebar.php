@@ -1,4 +1,4 @@
-<div class="col-2">
+<div class="col-sm-2 sidebar">
     <div class="bg-light" style="padding:20px; border-radius:20px; margin-top:20px;">
         <h6 style="text-align:center">HOT THREAD</h6>
         <ol>
