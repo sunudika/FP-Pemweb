@@ -47,7 +47,7 @@ if ($toogle_maintainance == 1) {
 					<input type="password" name="password_2">
 				</div>
 				<div class="input-group">
-					Foto KTM: <input type="file" name="image"><br>
+					Foto KTM: <input type="file" name="image" id="myFile"><br>
 				</div>
 				<div class="input-group">
 					<button type="submit" class="btn" name="reg_user">Register</button>
@@ -55,10 +55,12 @@ if ($toogle_maintainance == 1) {
 				<div class="input-group">
 					<a href="login.php" class="btn-sign" style="text-align: center;">Sign In</a>
 				</div>
-
-
 			</form>
 		</div>
+
+		<script>
+			document.getElementById("myFile").required = true;
+		</script>
 	</body>
 
 	</html>
