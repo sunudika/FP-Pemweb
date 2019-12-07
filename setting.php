@@ -30,9 +30,12 @@ if ($toogle_maintainance == 1) {
                 <div class="col">
                     <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
                         <h1 style="color: white; text-align:center; margin-bottom:100px;">EDIT PROFIL</h1>
+                        <div style="margin: 0; position: absolute; top:50%; left:60%; margin-right:-40%; transform: translate(-50%, -50%);">
+                            <img src="<?= base_url() ?>/images/profile/<?= $data['img_profile'] ?>" alt="" style="border-radius:100%; margin-top:10px;" width="100">
+                        </div>
+                        
                         <form action="setting.php" method="post" enctype="multipart/form-data">
                             <div style="margin: 0; position: absolute; top:80%; left:60%; margin-right:-40%; transform: translate(-50%, -50%);">
-                                <?php echo $data['img_verification'] ?> <br>
                                 Ganti Foto: <input type="file" name="image"><br>
                             </div>
                             <table>
