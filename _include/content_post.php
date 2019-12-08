@@ -96,8 +96,4 @@
                 </div>
     <?php };
     } ?>
-
-    <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
-        <button style="width:100%">Load Thread</button>
-    </div>
 </div>
