@@ -82,14 +82,15 @@
                 </table>
                 
                 <!-- komen disini -->
-                <div class="card my-4">
+                
+                <div class="card my-4" style="background-color:rgba(255, 255, 255, 0.25);">
                     <h5 class="card-header">Tinggalkan Komentar:</h5>
                     <div class="card-body">
                         <form>
                             <div class="form-group">
-                                <textarea class="form-control" rows="3"></textarea>
+                                <textarea class="form-control" rows="3"  style="background-color:rgba(255, 255, 255, 0.25);"></textarea>
                             </div>
-                            <td><button style="background-color:orange; color:white; width:25%"><i></i> Komen</button></td>
+                            <td><button class="btn btn-warning" style="width:25%"><i></i> Komen</button></td>
                         </form>
                     </div>
                 </div>
