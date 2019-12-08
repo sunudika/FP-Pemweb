@@ -39,14 +39,14 @@ if ($toogle_maintainance == 1) {
 				</div>
 				<div class="input-group">
 					<label>Password</label>
-					<input type="password" name="password_1" pattern=".{5,}" title="Six or more characters" required>
+					<input type="password" name="password_1" pattern=".{6,}" title="Password Minimal 6 Karakter" required>
 				</div>
 				<div class="input-group">
 					<label>Confirm password</label>
-					<input type="password" name="password_2" pattern=".{6,}" title="Six or more characters" required>
+					<input type="password" name="password_2" pattern=".{6,}" title="Password Minimal 6 Karakter" required>
 				</div>
 				<div class="input-group">
-					Foto KTM: <input type="file" name="image" id="myFile"><br>
+					Foto KTM: <input type="file" name="image" id="myFile" required><br>
 				</div>
 				<div class="input-group">
 					<button type="submit" class="btn" name="reg_user">Register</button>
@@ -56,10 +56,6 @@ if ($toogle_maintainance == 1) {
 				</div>
 			</form>
 		</div>
-
-		<script>
-			document.getElementById("myFile").required = true;
-		</script>
 	</body>
 
 	</html>
