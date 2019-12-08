@@ -47,16 +47,6 @@
                 <h5 style="padding: 20px 20px 0 20px;"><?= $post['judul']; ?></h5>
                 <p style="padding: 3%"><?= $post['post']; ?></p>
                 <hr>
-                <?php
-                        $id_post = $post['id'];
-                        $sql_comment = mysqli_query($con, "SELECT * FROM comment WHERE id_post='$id_post'") or die(mysqli_error($con, ""));
-                        if (mysqli_num_rows($sql_comment) > 0) {
-                            while ($comment = mysqli_fetch_array($sql_comment)) { ?>
-                        <div style="padding: 0 30px">
-                            <a href=""><?= $comment['nama_user']; ?></a> <?= $comment['comment']; ?> Pada <?= $comment['date_created']; ?>
-                        </div>
-                <?php };
-                        } ?>
 
                 <table style="width:100%; text-align:center">
                     <tr>
@@ -78,7 +68,20 @@
                     </tr>
                 </table>
 
-                <!-- komen disini -->
+                <div style="padding:10px;"></div>
+
+                <div style="background-color:rgba(255, 255, 255, 0.25); padding: 5px 0;">
+                    <?php $get_id = $_GET['id'];
+                            $sql_comment = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$get_id'") or die(mysqli_error($con, ""));
+                            if (mysqli_num_rows($sql_comment) > 0) {
+                                while ($comment = mysqli_fetch_array($sql_comment)) { ?>
+                            <div style="padding: 0 30px">
+                                <img src="<?= base_url() ?>/images/profile/<?= $comment['img_profile'] ?>" alt="" style="border-radius:100%; margin-left:10px;" width="30">
+                                <a href=""><?= $comment['nama_user'] ?></a> <?= $comment['comment'] ?> Pada (<?= $comment['date_create'] ?>)
+                            </div>
+                    <?php };
+                            }; ?>
+                </div>
 
                 <div class="card my-4" style="background-color:rgba(255, 255, 255, 0.25);">
                     <h5 class="card-header">Tinggalkan Komentar:</h5>
@@ -95,9 +98,11 @@
         } ?>
             </div>
 
+
             <?php if (isset($_POST["submit_comment"])) {
                 $get_id = $_GET['id'];
                 $comment_date = date("Y-m-d h:i:sa");
                 $comment = mysqli_real_escape_string($con, $_POST['comment']);
                 mysqli_query($con, "INSERT INTO comment (nama_user, id_post, comment, date_create) VALUES ('$username', '$get_id', '$comment', '$comment_date')");
+                echo "<script>window.location='';</script>";
             } ?>
