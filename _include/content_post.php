@@ -53,9 +53,7 @@
                         if (mysqli_num_rows($sql_comment) > 0) {
                             while ($comment = mysqli_fetch_array($sql_comment)) { ?>
                         <div style="padding: 0 30px">
-                            <a href=""><?= $comment['nama_user']; ?></a> <?= $comment['comment']; ?>
-                            <br>
-                            <a href="" style="padding-left:100px;">Suka</a> Pada <?= $comment['date_created']; ?>
+                            <a href=""><?= $comment['nama_user']; ?></a> <?= $comment['comment']; ?> Pada <?= $comment['date_created']; ?>
                         </div>
                 <?php };
                         } ?>
@@ -85,14 +83,21 @@
                 <div class="card my-4" style="background-color:rgba(255, 255, 255, 0.25);">
                     <h5 class="card-header">Tinggalkan Komentar:</h5>
                     <div class="card-body">
-                        <form>
+                        <form action="" method="post">
                             <div class="form-group">
-                                <textarea class="form-control" rows="3" style="background-color:rgba(255, 255, 255, 0.25);"></textarea>
+                                <textarea class="form-control" name="comment" rows="3" style="background-color:rgba(255, 255, 255, 0.25);" required></textarea>
                             </div>
-                            <td><button class="btn btn-warning" style="width:25%"><i></i> Komen</button></td>
+                            <td><button class="btn btn-warning" style="width:25%" type="submit" name="submit_comment"><i></i> Komen</button></td>
                         </form>
                     </div>
                 </div>
         <?php };
         } ?>
             </div>
+
+            <?php if (isset($_POST["submit_comment"])) {
+                $get_id = $_GET['id'];
+                $comment_date = date("Y-m-d h:i:sa");
+                $comment = mysqli_real_escape_string($con, $_POST['comment']);
+                mysqli_query($con, "INSERT INTO comment (nama_user, id_post, comment, date_create) VALUES ('$username', '$get_id', '$comment', '$comment_date')");
+            } ?>
