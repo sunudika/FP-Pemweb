@@ -1,5 +1,7 @@
 <div class="col-sm-8">
-    <?php if (isset($_SESSION['username'])) {
+    <?php
+    $get_id = $_GET['id'];
+    if (isset($_SESSION['username'])) {
         $username = $_SESSION['username'];
         $sql_profile = mysqli_query($con, "SELECT * FROM user WHERE username='$username'") or die(mysqli_error($con, ""));
         if (mysqli_num_rows($sql_profile) > 0) {
@@ -7,12 +9,10 @@
                 $img_profile = $profile['img_profile'];
                 $username = $profile['username'];
             };
-        } ?>
-    <?php } ?>
+        };
+    };
 
-    <?php
-    $id_post = $_GET['id'];
-    $sql_post = mysqli_query($con, "SELECT * FROM post JOIN user ON post.nama_user=user.username AND post.id ='$id_post' ORDER BY post.id DESC LIMIT 0, 10") or die(mysqli_error($con, ""));
+    $sql_post = mysqli_query($con, "SELECT * FROM post JOIN user ON post.nama_user=user.username AND post.id ='$get_id' ORDER BY post.id DESC LIMIT 0, 10") or die(mysqli_error($con, ""));
     if (mysqli_num_rows($sql_post) > 0) {
         while ($post = mysqli_fetch_array($sql_post)) {
             $img_profile = $post['img_profile'];
@@ -51,10 +51,8 @@
                 <table style="width:100%; text-align:center">
                     <tr>
                         <td>0 Likes</td>
-
                         <td>
                             <?php
-                                    $get_id = $_GET['id'];
                                     $sql_comment_count = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$get_id'") or die(mysqli_error($con, ""));
                                     $total_comment = mysqli_num_rows($sql_comment_count);
                                     echo "$total_comment Comment";
@@ -80,7 +78,7 @@
                 <div style="padding:10px;"></div>
 
                 <div style="background-color:rgba(255, 255, 255, 0.25); padding: 5px 0;">
-                    <?php $get_id = $_GET['id'];
+                    <?php
                             $sql_comment = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$get_id'") or die(mysqli_error($con, ""));
                             if (mysqli_num_rows($sql_comment) > 0) {
                                 while ($comment = mysqli_fetch_array($sql_comment)) { ?>
@@ -92,24 +90,25 @@
                             }; ?>
                 </div>
 
-                <div class="card my-4" style="background-color:rgba(255, 255, 255, 0.25);">
-                    <h5 class="card-header">Tinggalkan Komentar:</h5>
-                    <div class="card-body">
-                        <form action="" method="post">
-                            <div class="form-group">
-                                <textarea class="form-control" name="comment" rows="3" style="background-color:rgba(255, 255, 255, 0.25);" required></textarea>
-                            </div>
-                            <td><button class="btn btn-warning" style="width:25%" type="submit" name="submit_comment"><i></i> Komen</button></td>
-                        </form>
+                <?php if (isset($_SESSION['username'])) { ?>
+                    <div class="card my-4" style="background-color:rgba(255, 255, 255, 0.25);">
+                        <h5 class="card-header">Tinggalkan Komentar:</h5>
+                        <div class="card-body">
+                            <form action="" method="post">
+                                <div class="form-group">
+                                    <textarea class="form-control" name="comment" rows="3" style="background-color:rgba(255, 255, 255, 0.25);" required></textarea>
+                                </div>
+                                <td><button class="btn btn-warning" style="width:25%" type="submit" name="submit_comment"><i></i> Komen</button></td>
+                            </form>
+                        </div>
                     </div>
-                </div>
         <?php };
+            };
         } ?>
             </div>
 
 
             <?php if (isset($_POST["submit_comment"])) {
-                $get_id = $_GET['id'];
                 $comment_date = date("Y-m-d h:i:sa");
                 $comment = mysqli_real_escape_string($con, $_POST['comment']);
                 mysqli_query($con, "INSERT INTO comment (nama_user, id_post, comment, date_create) VALUES ('$username', '$get_id', '$comment', '$comment_date')");
