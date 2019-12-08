@@ -11,7 +11,8 @@
     <?php } ?>
 
     <?php
-    $sql_post = mysqli_query($con, "SELECT * FROM post JOIN user ON post.nama_user=user.username ORDER BY post.id DESC LIMIT 0, 10") or die(mysqli_error($con, ""));
+    $id_post = $_GET['id'];
+    $sql_post = mysqli_query($con, "SELECT * FROM post JOIN user ON post.nama_user=user.username AND post.id ='$id_post' ORDER BY post.id DESC LIMIT 0, 10") or die(mysqli_error($con, ""));
     if (mysqli_num_rows($sql_post) > 0) {
         while ($post = mysqli_fetch_array($sql_post)) {
             $img_profile = $post['img_profile'];
@@ -44,6 +45,7 @@
                     <img src="<?= base_url() ?>/images/thread/<?= $post['img_post']; ?>" style="display: block; margin-left: auto; margin-right: auto; width:70%;" alt="Ceritanya ini foto">
                 <?php } ?>
                 <h5 style="padding: 20px 20px 0 20px;"><?= $post['judul']; ?></h5>
+                <p><?= $post['post']; ?></p>
                 <hr>
                 <?php
                         $id_post = $post['id'];
