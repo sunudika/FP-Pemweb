@@ -147,20 +147,23 @@ if (isset($_POST['update-profile'])) {
     $username = mysqli_real_escape_string($con, $_POST['username']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
 
-    $image = $_FILES['image']['name'];
+    $photo = trim(mysqli_real_escape_string($con, $_FILES['image']['name']));
+    $error = trim(mysqli_real_escape_string($con, $_FILES['image']['error']));
+    $tmpphoto = trim(mysqli_real_escape_string($con, $_FILES['image']['tmp_name']));
+    $photosize = trim(mysqli_real_escape_string($con, $_FILES['image']['size']));
 
-    $image = $_FILES['image']['name'];
+    $extphoto = explode('.', $photo);
+    $extphoto = strtolower(end($extphoto));
 
-    $target = "images/profile/" . basename($image);
-
-    move_uploaded_file($_FILES['image']['tmp_name'], $target);
+    $photo = uniqid() . '.' . $extphoto;
+    move_uploaded_file($_FILES['image']['tmp_name'], 'images/profile/' . $photo);
 
     $user_check_query = "SELECT * FROM user WHERE username='$username' OR email='$email' LIMIT 1";
     $result = mysqli_query($con, $user_check_query);
     $user = mysqli_fetch_assoc($result);
 
     $username_lama = $user['username'];
-    mysqli_query($con, "UPDATE user SET username='$username', email='$email', img_profile='$image' WHERE username='$username_lama'");
+    mysqli_query($con, "UPDATE user SET username='$username', email='$email', img_profile='$photo' WHERE username='$username_lama'");
     $_SESSION['username'] = $username;
     header('location: setting.php');
 }
