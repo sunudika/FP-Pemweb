@@ -1,5 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="<?= base_url() ?>"><img src="<?= base_url() ?>/images/aset/logo3.png" alt="LOGO FORMATIK" height="50"></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <?php
     $sql_kategori = mysqli_query($con, "SELECT * FROM kategori") or die(mysqli_error($con, ""));
     if (mysqli_num_rows($sql_kategori) > 0) {
@@ -7,12 +13,6 @@
             <a href="" style="font-size: 16px; padding:8px; color:white;">#<?= strtoupper($kategori['kategori']) ?></a>
     <?php };
     } ?>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div style="padding: 4%"></div>
         <form class="form-inline my-2 my-lg-0" method="get" action="search.php">
             <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
