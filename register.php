@@ -19,7 +19,6 @@ if ($toogle_maintainance == 1) {
 
 	<body>
 		<div class="reg-card"><img src="images/aset/logo3.png">
-
 			<form method="post" action="register.php" enctype="multipart/form-data">
 				<?php
 					if (count($errors) > 0) { ?>
@@ -32,19 +31,19 @@ if ($toogle_maintainance == 1) {
 
 				<div class="input-group">
 					<label>Username</label>
-					<input type="text" name="username">
+					<input type="text" name="username" required>
 				</div>
 				<div class="input-group">
 					<label>Email</label>
-					<input type="email" name="email">
+					<input type="email" name="email" required>
 				</div>
 				<div class="input-group">
 					<label>Password</label>
-					<input type="password" name="password_1">
+					<input type="password" name="password_1" pattern=".{5,}" title="Six or more characters" required>
 				</div>
 				<div class="input-group">
 					<label>Confirm password</label>
-					<input type="password" name="password_2">
+					<input type="password" name="password_2" pattern=".{6,}" title="Six or more characters" required>
 				</div>
 				<div class="input-group">
 					Foto KTM: <input type="file" name="image" id="myFile"><br>
