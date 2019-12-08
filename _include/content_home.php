@@ -10,7 +10,7 @@
         } ?>
         <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
             <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40" height="40px">
-            <a href="<?php echo "profile_teman.php?username=".$username; ?>" style="color:black"><?= $_SESSION['username']; ?></a>
+            <a href="<?php echo "profile_teman.php?username=" . $username; ?>" style="color:black"><?= $_SESSION['username']; ?></a>
             <form action="" method="post" enctype="multipart/form-data">
                 <input type="text" name="judul" placeholder="judul" style="display: block; margin-left: auto; margin-right: auto; width:99%" requied>
                 <textarea name="isi" rows="3" style="display: block; margin-left: auto; margin-right: auto; width:99%" placeholder="Ketik postingan anda disini"></textarea>
@@ -29,8 +29,26 @@
             <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
                 <div>
                     <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40px" height="40px">
-                    <a href="<?php echo "profile_teman.php?username=".$post['nama_user']; ?>" style="color:black"><?= $post['nama_user']; ?></a> Pada <?= $post['date_created']; ?>
-                    <br>
+                    <a href="<?php echo "profile_teman.php?username=" . $post['nama_user']; ?>" style="color:black"><?= $post['nama_user']; ?></a> Pada <?= $post['date_created']; ?>
+
+                    <?php if (isset($_SESSION['username'])) { ?>
+                        <div class="dropdown" style="float:right;">
+                            <button class="dropbtn"><i class="fas fa-ellipsis-h"></i></button>
+                            <div class="dropdown-content">
+                                <a href="#">Share Link</a>
+                                <?php if ($post['nama_user'] == $_SESSION['username']) { ?>
+                                    <a href="#">Edit Post</a>
+                                    <a href="#" onclick="del<?= $post[0] ?>()">Delete Post</a>
+                                    <script>
+                                        function del<?= $post[0] ?>() {
+                                            var txt;
+                                            if (confirm(" Anda yakin ingin mendelete post ini?")) {
+                                                window.location = "<?= base_url() ?>/_auth/delete_post.php?id=<?= $post[0] ?>";
+                                            }
+                                        }
+                                    </script> <?php }; ?>
+                            </div>
+                        </div> <?php } ?> <br>
                 </div>
                 <?php if ($post['img_post'] != "") { ?>
                     <img src="<?= base_url() ?>/images/thread/<?= $post['img_post']; ?>" style="display: block; margin-left: auto; margin-right: auto; width:70%;" alt="Ceritanya ini foto">
@@ -52,8 +70,24 @@
 
                 <table style="width:100%; text-align:center">
                     <tr>
-                        <td><button style="background-color:blue; color:white; width:100%">Cendol Dawet</button></td>
-                        <td><button style="background-color:red; color:white; width:100%">Bata Atos</button></td>
+                        <td>0 Likes</td>
+                        <td>0 Comment</td>
+                        <td style="width:20%"></td>
+                        <?php if (isset($_SESSION['username'])) { ?>
+                            <form action="" method="post">
+                                <td><button style="background-color:transparent; color:white; width:100%" type="submit" name="post_likes<?= $post[0] ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button></td>
+                                <td><button style="background-color:transparent; color:white; width:100%" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                            </form>
+                            <?php if (isset($_POST["post_likes" . $post[0]])) {
+                                            $user_name = $_SESSION['username'];
+                                            $likes = mysqli_real_escape_string($con, $_POST['post_likes' . $post[0]]);
+                                            mysqli_query($con, "INSERT INTO post_like (id_post, username, value) VALUES ('$post[0]', '$user_name', '$likes')");
+                                        } ?>
+                        <?php } else { ?>
+                            <td><button style="background-color:transparent; color:white; width:100%"><i class="far fa-thumbs-up"></i> Cendol Dawet</button></td>
+                            <td><button style="background-color:transparent; color:white; width:100%"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                        <?php } ?>
+
                     </tr>
                 </table>
                 <button style="width:100%">Lihat Selengkapnya</button>
