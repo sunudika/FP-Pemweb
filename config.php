@@ -28,8 +28,8 @@ if (isset($_POST['reg_user'])) {
     // receive all input values from the form
     $username = mysqli_real_escape_string($con, $_POST['username']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
-    $password_1 = mysqli_real_escape_string($con, $_POST['password_1']);
-    $password_2 = mysqli_real_escape_string($con, $_POST['password_2']);
+    $password_1 = md5(mysqli_real_escape_string($con, $_POST['password_1']));
+    $password_2 = md5(mysqli_real_escape_string($con, $_POST['password_2']));
 
     $photo = trim(mysqli_real_escape_string($con, $_FILES['image']['name']));
     $error = trim(mysqli_real_escape_string($con, $_FILES['image']['error']));
