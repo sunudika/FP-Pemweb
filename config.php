@@ -43,7 +43,7 @@ if (isset($_POST['reg_user'])) {
     $photo = uniqid() . '.' . $extphoto;
 
     move_uploaded_file($_FILES['image']['tmp_name'], 'images/img_verification/' . $photo);
-    mysqli_query($con, "INSERT INTO user (username, email, password, img_verification) VALUES('$username', '$email', '$password', '$photo')");
+    mysqli_query($con, "INSERT INTO user (username, email, password, img_verification) VALUES('$username', '$email', '$password_1', '$photo')");
     header('location: index.php');
 }
 
