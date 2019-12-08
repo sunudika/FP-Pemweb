@@ -6,13 +6,13 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <?php
-    $sql_kategori = mysqli_query($con, "SELECT * FROM kategori") or die(mysqli_error($con, ""));
-    if (mysqli_num_rows($sql_kategori) > 0) {
-        while ($kategori = mysqli_fetch_array($sql_kategori)) { ?>
-            <a href="" style="font-size: 16px; padding:8px; color:white;">#<?= strtoupper($kategori['kategori']) ?></a>
-    <?php };
-    } ?>
+        <?php
+        $sql_kategori = mysqli_query($con, "SELECT * FROM kategori") or die(mysqli_error($con, ""));
+        if (mysqli_num_rows($sql_kategori) > 0) {
+            while ($kategori = mysqli_fetch_array($sql_kategori)) { ?>
+                <a href="" style="font-size: 16px; padding:8px; color:white;">#<?= strtoupper($kategori['kategori']) ?></a>
+        <?php };
+        } ?>
         <div style="padding: 4%"></div>
         <form class="form-inline my-2 my-lg-0" method="get" action="search.php">
             <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -23,14 +23,13 @@
                 <p style="color:white; margin:10px;">|</p>
                 <a href="register.php" style="color:white">REGISTER</a> &nbsp;
             <?php } else { ?>
-                <a href="setting.php" style="color:white; padding:5%;"><strong><?php
-                                                                                    if (isset($_SESSION['username'])) {
-                                                                                        echo $_SESSION['username'];
-                                                                                    } else {
-                                                                                        echo "guest";
-                                                                                    }
-                                                                                    ?></strong></a>
-                <a href="index.php?logout='1'" style="color: red; padding:1%; font-weight:bold;">logout</a>
+                <a href="setting.php" style="color:white; padding:2.5%;"><strong><?php if (isset($_SESSION['username'])) {
+                                                                                            echo $_SESSION['username'];
+                                                                                        }
+                                                                                        ?></strong></a>
+                <button style="color:red;"><i class="far fa-bell"></i></button>
+                <!-- <button style="color:red;"><i class="far fa-bell"></i></button>"></i></button> -->
+                <a href="index.php?logout='1'" style="color: red; padding:2.5%; font-weight:bold;">logout</a>
             <?php } ?>
         </form>
 
