@@ -83,9 +83,8 @@
                                             mysqli_query($con, "INSERT INTO post_like (id_post, username, value) VALUES ('$post[0]', '$user_name', '$likes')");
                                         } ?>
                         <?php } else { ?>
-                            <td><button><button class="btn btn-secondary"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-secondary"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                            <td style="float: right;"><button class="btn btn-secondary"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-secondary"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
                         <?php } ?>
-
                     </tr>
                 </table>
                 <a href="post.php?id=<?= $post[0] ?>"><button class="btn btn-light" style="width:100%">Lihat Selengkapnya</button></a>
