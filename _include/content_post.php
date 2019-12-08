@@ -67,11 +67,6 @@
                         <td style="width:20%"></td>
                         <?php if (isset($_SESSION['username'])) { ?>
                             <form action="" method="post">
-                                <td><button style="background-color:blue; color:white; width:100%" type="submit" name="post_likes<?= $post[0] ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button></td>
-                                <td><button style="background-color:red; color:white; width:100%" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
-                            </form>
-                            <?php if (isset($_SESSION['username'])) { ?>
-                            <form action="" method="post">
                                 <td style="float: right;"><button class="btn btn-primary" type="submit" name="post_likes<?= $post[0] ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-danger" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
                             </form>
                             <?php if (isset($_POST["post_likes" . $post[0]])) {
@@ -80,24 +75,25 @@
                                             mysqli_query($con, "INSERT INTO post_like (id_post, username, value) VALUES ('$post[0]', '$user_name', '$likes')");
                                         } ?>
                         <?php } else { ?>
-                            <td><button><button class="btn btn-secondary"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-secondary"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                            <td style="float: right;"><button class="btn btn-secondary"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-secondary"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
                         <?php } ?>
+
                     </tr>
                 </table>
-                
+
                 <!-- komen disini -->
-                
+
                 <div class="card my-4" style="background-color:rgba(255, 255, 255, 0.25);">
                     <h5 class="card-header">Tinggalkan Komentar:</h5>
                     <div class="card-body">
                         <form>
                             <div class="form-group">
-                                <textarea class="form-control" rows="3"  style="background-color:rgba(255, 255, 255, 0.25);"></textarea>
+                                <textarea class="form-control" rows="3" style="background-color:rgba(255, 255, 255, 0.25);"></textarea>
                             </div>
                             <td><button class="btn btn-warning" style="width:25%"><i></i> Komen</button></td>
                         </form>
                     </div>
                 </div>
-    <?php };
-    } ?>
-</div>
+        <?php };
+        } ?>
+            </div>

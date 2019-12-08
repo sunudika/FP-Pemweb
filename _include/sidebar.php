@@ -6,7 +6,7 @@
             $sql_thread = mysqli_query($con, "SELECT * FROM post ORDER BY id DESC LIMIT 0, 6") or die(mysqli_error($con, ""));
             if (mysqli_num_rows($sql_thread) > 0) {
                 while ($thread = mysqli_fetch_array($sql_thread)) { ?>
-                    <li><a href="post.php?id=<?= $sql_thread[0] ?>"><?= substr($thread['judul'], 0, 8);
+                    <li><a href="post.php?id=<?= $thread['id'] ?>"><?= substr($thread['judul'], 0, 8);
                                                                             if (strlen($thread['judul']) >= 8) {
                                                                                 echo "...";
                                                                             } ?>
