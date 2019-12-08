@@ -41,9 +41,6 @@ if ($toogle_maintainance == 1) {
                         <a class="nav-link active" href="#">Thread</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Community</a>
-                      </li>
-                      <li class="nav-item">
                         <a class="nav-link" href="#">Users</a>
                       </li>
                     </ul>
