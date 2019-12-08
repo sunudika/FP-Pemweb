@@ -1,1 +1,1 @@
-Proyek ini dibuat untuk memenuhi Final Project mata kuliah pemrograman web
+Website ini dibangun untuk memenuhi Final Project mata kuliah Pemrograman Web
