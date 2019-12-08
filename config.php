@@ -156,6 +156,8 @@ if (isset($_POST['post_kirim'])) {
 if (isset($_POST['update-profile'])) {
     $username = mysqli_real_escape_string($con, $_POST['username']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
+    
+    $image = $_FILES['image']['name'];  
 
     $image = $_FILES['image']['name'];
 
@@ -166,11 +168,44 @@ if (isset($_POST['update-profile'])) {
     $user_check_query = "SELECT * FROM user WHERE username='$username' OR email='$email' LIMIT 1";
     $result = mysqli_query($con, $user_check_query);
     $user = mysqli_fetch_assoc($result);
-    $username_lama = $user['username'];
 
+    $username_lama = $user['username'];
     mysqli_query($con, "UPDATE user SET username='$username', email='$email', img_profile='$image' WHERE username='$username_lama'");
     $_SESSION['username'] = $username;
     header('location: setting.php');
+}
+
+if (isset($_POST['update-password'])) {
+    $username = mysqli_real_escape_string($con, $_POST['username']);
+    $password_old = md5(mysqli_real_escape_string($con, $_POST['password']));
+    $password_1 = mysqli_real_escape_string($con, $_POST['password_1']);
+    $password_2 = mysqli_real_escape_string($con, $_POST['password_2']);
+
+    $user_check_query = "SELECT * FROM user WHERE username='$username' LIMIT 1";
+    $result = mysqli_query($con, $user_check_query);
+    $user = mysqli_fetch_assoc($result);
+
+    if (strlen($password_1) <= 6) {
+        array_push($errors, "Password minimal 6 huruf");
+    }
+    if ($password_1 != $password_2) {
+        array_push($errors, "Password tidak sama");
+    }
+
+
+    if ($user) { // if user exists
+        if ($user['password'] === $password_old) {
+            $password = md5($password_1);
+            $username_lama = $user['username'];
+            mysqli_query($con, "UPDATE user SET password='$password' WHERE username='$username_lama'");
+            $_SESSION['username'] = $username;
+            header('location: setting.php');
+            
+        }else {
+            array_push($errors, "Password lama salah");
+        }
+    }
+
 }
 
 $sql_settings = mysqli_query($con, "SELECT * FROM setting");
