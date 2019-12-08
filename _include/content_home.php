@@ -75,8 +75,7 @@
                         <td style="width:20%"></td>
                         <?php if (isset($_SESSION['username'])) { ?>
                             <form action="" method="post">
-                                <td><button style="background-color:blue; color:white; width:100%" type="submit" name="post_likes<?= $post[0] ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button></td>
-                                <td><button style="background-color:red; color:white; width:100%" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                                <td style="float: right;"><button class="btn btn-primary" type="submit" name="post_likes<?= $post[0] ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-danger" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
                             </form>
                             <?php if (isset($_POST["post_likes" . $post[0]])) {
                                             $user_name = $_SESSION['username'];
@@ -84,18 +83,17 @@
                                             mysqli_query($con, "INSERT INTO post_like (id_post, username, value) VALUES ('$post[0]', '$user_name', '$likes')");
                                         } ?>
                         <?php } else { ?>
-                            <td><button style="background-color:transparent; color:white; width:100%"><i class="far fa-thumbs-up"></i> Cendol Dawet</button></td>
-                            <td><button style="background-color:transparent; color:white; width:100%"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                            <td><button><button class="btn btn-secondary"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-secondary"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
                         <?php } ?>
 
                     </tr>
                 </table>
-                <a href="post.php?id=<?= $post[0] ?>"><button style="width:100%">Lihat Selengkapnya</button></a>
+                <a href="post.php?id=<?= $post[0] ?>"><button class="btn btn-light" style="width:100%">Lihat Selengkapnya</button></a>
             </div>
     <?php };
     } ?>
 
     <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
-        <button style="width:100%">Load Thread</button>
+        <button class="btn btn-light" style="width:100%">Load Thread</button>
     </div>
 </div>
