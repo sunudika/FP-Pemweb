@@ -46,20 +46,14 @@ if (isset($_POST['reg_user'])) {
     if ($password_1 != $password_2) {
         array_push($errors, "Password tidak sama");
     }
-    if ($error == 4) {
-        array_push($errors, "KTM photo is not uploaded yet");
-    } else {
-        $extphotovalid = ['jpg', 'jpeg', 'png'];
-        $extphoto = explode('.', $photo);
-        $extphoto = strtolower(end($extphoto));
 
-        if (!in_array($extphoto, $extphotovalid)) {
-            array_push($errors, "Photo that u're uploaded is not supported format");
-        }
+    $extphotovalid = ['jpg', 'jpeg', 'png'];
+    $extphoto = explode('.', $photo);
+    $extphoto = strtolower(end($extphoto));
 
-        $photo = uniqid() . '.' . $extphoto;
+    $photo = uniqid() . '.' . $extphoto;
 
-        move_uploaded_file($_FILES['image']['tmp_name'], 'images/img_verification/' . $photo);
+    move_uploaded_file($_FILES['image']['tmp_name'], 'images/img_verification/' . $photo);
 
     $user_check_query = "SELECT * FROM user WHERE username='$username' OR email='$email' LIMIT 1";
     $result = mysqli_query($con, $user_check_query);
@@ -82,12 +76,9 @@ if (isset($_POST['reg_user'])) {
 
     if (count($errors) == 0) {
         $password = md5($password_1);
-            mysqli_query($con, "INSERT INTO user (username, email, password, img_verification) VALUES('$username', '$email', '$password', '$photo')");
-        }
-        $_SESSION['username'] = $username;
-        $_SESSION['success'] = "You are now logged in";
-        header('location: index.php');
+        mysqli_query($con, "INSERT INTO user (username, email, password, img_verification) VALUES('$username', '$email', '$password', '$photo')");
     }
+    header('location: index.php');
 }
 
 if (isset($_POST['login_user'])) {
@@ -156,19 +147,19 @@ if (isset($_POST['post_kirim'])) {
         move_uploaded_file($_FILES['photo']['tmp_name'], 'images/thread/' . $photo);
         $sql_add = mysqli_query($con, "INSERT INTO post (judul, post, img_post, nama_user, date_created) VALUES ('$judul','$isi','$photo','$nama','$post_date')");
     }
-    if($_POST['post_kirim'] === 'profil') {
-        header("location: profile_teman.php?username=".$post['nama_user']);
-    }else
-    echo "<script>window.location='" . base_url() . "';</script>";
+    if ($_POST['post_kirim'] === 'profil') {
+        header("location: profile_teman.php?username=" . $post['nama_user']);
+    } else
+        echo "<script>window.location='" . base_url() . "';</script>";
 }
 
 if (isset($_POST['update-profile'])) {
     $username = mysqli_real_escape_string($con, $_POST['username']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
-    
-    $image = $_FILES['image']['name'];  
 
-    $target = "images/profile/".basename($image);
+    $image = $_FILES['image']['name'];
+
+    $target = "images/profile/" . basename($image);
 
     move_uploaded_file($_FILES['image']['tmp_name'], $target);
 
