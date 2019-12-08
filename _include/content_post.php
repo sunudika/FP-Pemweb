@@ -77,7 +77,6 @@
                         <?php } else { ?>
                             <td style="float: right;"><button class="btn btn-secondary"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-secondary"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
                         <?php } ?>
-
                     </tr>
                 </table>
 
