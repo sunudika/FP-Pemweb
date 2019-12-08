@@ -90,7 +90,7 @@
 
                     </tr>
                 </table>
-                <button style="width:100%">Lihat Selengkapnya</button>
+                <a href="_include/content_post.php"><button style="width:100%">Lihat Selengkapnya</button></a>
             </div>
     <?php };
     } ?>
