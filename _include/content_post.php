@@ -51,7 +51,16 @@
                 <table style="width:100%; text-align:center">
                     <tr>
                         <td>0 Likes</td>
-                        <td>0 Comment</td>
+
+                        <td>
+                            <?php
+                                    $get_id = $_GET['id'];
+                                    $sql_comment_count = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$get_id'") or die(mysqli_error($con, ""));
+                                    $total_comment = mysqli_num_rows($sql_comment_count);
+                                    echo "$total_comment Comment";
+                                    ?>
+                        </td>
+
                         <td style="width:20%"></td>
                         <?php if (isset($_SESSION['username'])) { ?>
                             <form action="" method="post">
