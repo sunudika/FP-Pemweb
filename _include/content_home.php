@@ -75,8 +75,8 @@
                         <td style="width:20%"></td>
                         <?php if (isset($_SESSION['username'])) { ?>
                             <form action="" method="post">
-                                <td><button style="background-color:transparent; color:white; width:100%" type="submit" name="post_likes<?= $post[0] ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button></td>
-                                <td><button style="background-color:transparent; color:white; width:100%" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                                <td><button style="background-color:blue; color:white; width:80%" type="submit" name="post_likes<?= $post[0] ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button></td>
+                                <td><button style="background-color:red; color:white; width:100%" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
                             </form>
                             <?php if (isset($_POST["post_likes" . $post[0]])) {
                                             $user_name = $_SESSION['username'];
@@ -90,7 +90,7 @@
 
                     </tr>
                 </table>
-                <a href="_include/content_post.php"><button style="width:100%">Lihat Selengkapnya</button></a>
+                <a href="post.php?id=<?= $post[0] ?>"><button style="width:100%">Lihat Selengkapnya</button></a>
             </div>
     <?php };
     } ?>
