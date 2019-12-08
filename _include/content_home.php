@@ -70,8 +70,24 @@
 
                 <table style="width:100%; text-align:center">
                     <tr>
-                        <td><button style="background-color:blue; color:white; width:100%">Cendol Dawet</button></td>
-                        <td><button style="background-color:red; color:white; width:100%">Bata Atos</button></td>
+                        <td>0 Likes</td>
+                        <td>0 Comment</td>
+                        <td style="width:20%"></td>
+                        <?php if (isset($_SESSION['username'])) { ?>
+                            <form action="" method="post">
+                                <td><button style="background-color:transparent; color:white; width:100%" type="submit" name="post_likes<?= $post[0] ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button></td>
+                                <td><button style="background-color:transparent; color:white; width:100%" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                            </form>
+                            <?php if (isset($_POST["post_likes" . $post[0]])) {
+                                            $user_name = $_SESSION['username'];
+                                            $likes = mysqli_real_escape_string($con, $_POST['post_likes' . $post[0]]);
+                                            mysqli_query($con, "INSERT INTO post_like (id_post, username, value) VALUES ('$post[0]', '$user_name', '$likes')");
+                                        } ?>
+                        <?php } else { ?>
+                            <td><button style="background-color:transparent; color:white; width:100%"><i class="far fa-thumbs-up"></i> Cendol Dawet</button></td>
+                            <td><button style="background-color:transparent; color:white; width:100%"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                        <?php } ?>
+
                     </tr>
                 </table>
                 <button style="width:100%">Lihat Selengkapnya</button>
