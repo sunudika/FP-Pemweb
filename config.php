@@ -31,6 +31,11 @@ if (isset($_POST['reg_user'])) {
     $password_1 = mysqli_real_escape_string($con, $_POST['password_1']);
     $password_2 = mysqli_real_escape_string($con, $_POST['password_2']);
 
+    $photo = trim(mysqli_real_escape_string($con, $_FILES['image']['name']));
+    $error = trim(mysqli_real_escape_string($con, $_FILES['image']['error']));
+    $tmpphoto = trim(mysqli_real_escape_string($con, $_FILES['image']['tmp_name']));
+    $photosize = trim(mysqli_real_escape_string($con, $_FILES['image']['size']));
+
     if (empty($username)) {
         array_push($errors, "Username harus diisi");
     }
@@ -68,11 +73,6 @@ if (isset($_POST['reg_user'])) {
             array_push($errors, "email already exists");
         }
     }
-
-    $photo = trim(mysqli_real_escape_string($con, $_FILES['image']['name']));
-    $error = trim(mysqli_real_escape_string($con, $_FILES['image']['error']));
-    $tmpphoto = trim(mysqli_real_escape_string($con, $_FILES['image']['tmp_name']));
-    $photosize = trim(mysqli_real_escape_string($con, $_FILES['image']['size']));
 
     if (count($errors) == 0) {
         $password = md5($password_1);
@@ -156,8 +156,8 @@ if (isset($_POST['post_kirim'])) {
 if (isset($_POST['update-profile'])) {
     $username = mysqli_real_escape_string($con, $_POST['username']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
-    
-    $image = $_FILES['image']['name'];  
+
+    $image = $_FILES['image']['name'];
 
     $image = $_FILES['image']['name'];
 
@@ -200,12 +200,10 @@ if (isset($_POST['update-password'])) {
             mysqli_query($con, "UPDATE user SET password='$password' WHERE username='$username_lama'");
             $_SESSION['username'] = $username;
             header('location: setting.php');
-            
-        }else {
+        } else {
             array_push($errors, "Password lama salah");
         }
     }
-
 }
 
 $sql_settings = mysqli_query($con, "SELECT * FROM setting");
