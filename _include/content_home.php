@@ -36,8 +36,8 @@
                             <button class="dropbtn"><i class="fas fa-ellipsis-h"></i></button>
                             <div class="dropdown-content">
                                 <a href="#">Share Link</a>
-                                <a href="#">Edit Post</a>
                                 <?php if ($post['nama_user'] == $_SESSION['username']) { ?>
+                                    <a href="#">Edit Post</a>
                                     <a href="#" onclick="del<?= $post[0] ?>()">Delete Post</a>
                                     <script>
                                         function del<?= $post[0] ?>() {
