@@ -1,4 +1,4 @@
-<div class="col-sm-8">
+<div class="col-lg-8">
     <?php if (isset($_SESSION['username'])) {
         $username = $_SESSION['username'];
         $sql_profile = mysqli_query($con, "SELECT * FROM user WHERE username='$username'") or die(mysqli_error($con, ""));
