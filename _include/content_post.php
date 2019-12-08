@@ -70,16 +70,18 @@
                                 <td><button style="background-color:blue; color:white; width:100%" type="submit" name="post_likes<?= $post[0] ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button></td>
                                 <td><button style="background-color:red; color:white; width:100%" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
                             </form>
+                            <?php if (isset($_SESSION['username'])) { ?>
+                            <form action="" method="post">
+                                <td style="float: right;"><button class="btn btn-primary" type="submit" name="post_likes<?= $post[0] ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-danger" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                            </form>
                             <?php if (isset($_POST["post_likes" . $post[0]])) {
                                             $user_name = $_SESSION['username'];
                                             $likes = mysqli_real_escape_string($con, $_POST['post_likes' . $post[0]]);
                                             mysqli_query($con, "INSERT INTO post_like (id_post, username, value) VALUES ('$post[0]', '$user_name', '$likes')");
                                         } ?>
                         <?php } else { ?>
-                            <td><button style="background-color:transparent; color:white; width:100%"><i class="far fa-thumbs-up"></i> Cendol Dawet</button></td>
-                            <td><button style="background-color:transparent; color:white; width:100%"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                            <td><button><button class="btn btn-secondary"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-secondary"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
                         <?php } ?>
-
                     </tr>
                 </table>
                 
