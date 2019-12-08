@@ -90,7 +90,7 @@
 
                     </tr>
                 </table>
-                <a href="_include/content_post.php"><button style="width:100%">Lihat Selengkapnya</button></a>
+                <a href="post.php?id=<?= $post[0] ?>"><button style="width:100%">Lihat Selengkapnya</button></a>
             </div>
     <?php };
     } ?>
