@@ -45,7 +45,7 @@
                     <img src="<?= base_url() ?>/images/thread/<?= $post['img_post']; ?>" style="display: block; margin-left: auto; margin-right: auto; width:70%;" alt="Ceritanya ini foto">
                 <?php } ?>
                 <h5 style="padding: 20px 20px 0 20px;"><?= $post['judul']; ?></h5>
-                <p><?= $post['post']; ?></p>
+                <p style="padding: 3%"><?= $post['post']; ?></p>
                 <hr>
                 <?php
                         $id_post = $post['id'];
