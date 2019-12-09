@@ -52,22 +52,19 @@
                     <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40px" height="40px">
                     <a href="profile_teman.php?username=<?= $post['nama_user']; ?>" style="color:black"><?= $post['nama_user']; ?></a> Pada <?= $post['date_created']; ?>
 
-                    <?php if (isset($_SESSION['username'])) { ?>
+                    <?php if ($post['nama_user'] == $_SESSION['username']) { ?>
                         <div class="dropdown" style="float:right;">
                             <button class="dropbtn"><i class="fas fa-ellipsis-h"></i></button>
                             <div class="dropdown-content">
-                                <a href="#">Share Link</a>
-                                <?php if ($post['nama_user'] == $_SESSION['username']) { ?>
-                                    <a href="#">Edit Post</a>
-                                    <a href="#" onclick="del<?= $post[0] ?>()">Delete Post</a>
-                                    <script>
-                                        function del<?= $post_id ?>() {
-                                            var txt;
-                                            if (confirm(" Anda yakin ingin mendelete post ini?")) {
-                                                window.location = "<?= base_url() ?>/_auth/delete_post.php?id=<?= $post_id ?>";
-                                            }
+                                <a href="#" onclick="del<?= $post[0] ?>()">Delete Post</a>
+                                <script>
+                                    function del<?= $post_id ?>() {
+                                        var txt;
+                                        if (confirm(" Anda yakin ingin mendelete post ini?")) {
+                                            window.location = "<?= base_url() ?>/_auth/delete_post.php?id=<?= $post_id ?>";
                                         }
-                                    </script> <?php }; ?>
+                                    }
+                                </script>
                             </div>
                         </div> <?php } ?> <br>
                 </div>
