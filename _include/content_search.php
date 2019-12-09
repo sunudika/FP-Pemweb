@@ -1,5 +1,5 @@
-<div class="col" style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
-    <label for="">Thread</label>
+<div class="col" style="background-color:black; color:white; border-radius: 5px; max-width: 850px;">
+    <label for="" style="margin-top: 20px;">Thread</label>
     <br>
     <?php
     $search = $_GET['search'];
@@ -23,7 +23,7 @@
     } ?>
     <hr>
 
-    <label for="">Users</label>
+    <label for="" style="margin-bottom: 20px;">Users</label>
     <br>
     <?php
     $sql_find2 = mysqli_query($con, "SELECT * FROM user WHERE username LIKE '%$search%' OR email LIKE '%$search%' ORDER BY id DESC") or die(mysqli_error($con, ""));
@@ -32,7 +32,7 @@
             <img src="<?= base_url() ?>/images/profile/<?= $find2['img_profile']; ?>" alt="" style="border-radius:100%; margin-left:10px;" width="35" height="35">
             <a href=""><?= $find2['username']; ?></a>
             <br>
-            <p style="padding-left:50px; color:black"><?= $find2['email']; ?></p>
+            <p style="padding-left:50px; color:white"><?= $find2['email']; ?></p>
             <br>
     <?php };
     } ?>
