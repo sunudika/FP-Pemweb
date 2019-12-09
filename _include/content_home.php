@@ -104,17 +104,40 @@
                         <td style="width:20%"></td>
                         <?php if (isset($_SESSION['username'])) { ?>
                             <form action="" method="post">
-                                <td style="float: right;"><button class="btn btn-primary" type="submit" name="post_likes<?= $post_id ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-danger" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                                <?php
+                                            $sql_like = mysqli_query($con, "SELECT * FROM post_like WHERE id_post='$post_id' AND username='$username'");
+                                            if (mysqli_num_rows($sql_like) > 0) {
+                                                while ($like = mysqli_fetch_array($sql_like)) {
+                                                    if ($post['value'] = '1') { ?>
+                                            <td style="float: right;"><button class="btn btn-secondary" type="submit" name="unpost_likes<?= $post_id ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-danger" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                                        <?php } else { ?>
+                                            <td style="float: right;"><button class="btn btn-primary" type="submit" name="post_likes<?= $post_id ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-secondary" type="submit" name="unpost_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                                    <?php };
+                                                    };
+                                                } else { ?>
+                                    <td style="float: right;"><button class="btn btn-primary" type="submit" name="post_likes<?= $post_id ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-danger" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                                <?php }; ?>
                             </form>
                             <?php if (isset($_POST["post_likes" . $post_id])) {
-                                            $user_name = $_SESSION['username'];
                                             $likes = mysqli_real_escape_string($con, $_POST['post_likes' . $post_id]);
 
-                                            $sql_like = mysqli_query($con, "SELECT * FROM post_like WHERE id_post='$post_id' AND username='$user_name'");
+                                            $sql_like = mysqli_query($con, "SELECT * FROM post_like WHERE id_post='$post_id' AND username='$username'");
                                             if (mysqli_num_rows($sql_like) > 0) {
-                                                mysqli_query($con, "UPDATE post_like SET value='$likes' WHERE id_post='$post_id' AND username='$user_name'");
+                                                mysqli_query($con, "UPDATE post_like SET value='$likes' WHERE id_post='$post_id' AND username='$username'");
                                             } else {
-                                                mysqli_query($con, "INSERT INTO post_like (id_post, username, value) VALUES ('$post_id', '$user_name', '$likes')");
+                                                mysqli_query($con, "INSERT INTO post_like (id_post, username, value) VALUES ('$post_id', '$username', '$likes')");
+                                            };
+                                            echo "<script>window.location='" . base_url() . "';</script>";
+                                        } ?>
+
+                            <?php if (isset($_POST["unpost_likes" . $post_id])) {
+                                            $likes = mysqli_real_escape_string($con, $_POST['post_likes' . $post_id]);
+
+                                            $sql_like = mysqli_query($con, "SELECT * FROM post_like WHERE id_post='$post_id' AND username='$username'");
+                                            if (mysqli_num_rows($sql_like) > 0) {
+                                                mysqli_query($con, "UPDATE post_like SET value='$likes' WHERE id_post='$post_id' AND username='$username'");
+                                            } else {
+                                                mysqli_query($con, "INSERT INTO post_like (id_post, username, value) VALUES ('$post_id', '$username', '$likes')");
                                             };
                                             echo "<script>window.location='" . base_url() . "';</script>";
                                         } ?>
