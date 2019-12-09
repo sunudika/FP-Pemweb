@@ -1,6 +1,6 @@
 <div class="col-sm-8">
     <?php
-    $get_id = $_GET['id'];
+    $post_id = $_GET['id'];
     if (isset($_SESSION['username'])) {
         $username = $_SESSION['username'];
         $sql_profile = mysqli_query($con, "SELECT * FROM user WHERE username='$username'") or die(mysqli_error($con, ""));
@@ -12,7 +12,7 @@
         };
     };
 
-    $sql_post = mysqli_query($con, "SELECT * FROM post JOIN user ON post.nama_user=user.username AND post.id ='$get_id' ORDER BY post.id DESC LIMIT 0, 10") or die(mysqli_error($con, ""));
+    $sql_post = mysqli_query($con, "SELECT * FROM post JOIN user ON post.nama_user=user.username AND post.id ='$post_id' ORDER BY post.id DESC LIMIT 0, 10") or die(mysqli_error($con, ""));
     if (mysqli_num_rows($sql_post) > 0) {
         while ($post = mysqli_fetch_array($sql_post)) {
             $img_profile = $post['img_profile'];
@@ -50,10 +50,23 @@
 
                 <table style="width:100%; text-align:center">
                     <tr>
-                        <td>0 Likes</td>
                         <td>
                             <?php
-                                    $sql_comment_count = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$get_id'") or die(mysqli_error($con, ""));
+                                    $sql_like_count = mysqli_query($con, "SELECT * FROM post_like WHERE id_post='$post_id' AND value='1'") or die(mysqli_error($con, ""));
+                                    $total_like = mysqli_num_rows($sql_like_count);
+                                    echo "$total_like Likes";
+                                    ?>
+                        </td>
+                        <td>
+                            <?php
+                                    $sql_like_count = mysqli_query($con, "SELECT * FROM post_like WHERE id_post='$post_id' AND value='0'") or die(mysqli_error($con, ""));
+                                    $total_like = mysqli_num_rows($sql_like_count);
+                                    echo "$total_like Dislike";
+                                    ?>
+                        </td>
+                        <td>
+                            <?php
+                                    $sql_comment_count = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$post_id'") or die(mysqli_error($con, ""));
                                     $total_comment = mysqli_num_rows($sql_comment_count);
                                     echo "$total_comment Comment";
                                     ?>
@@ -62,12 +75,40 @@
                         <td style="width:20%"></td>
                         <?php if (isset($_SESSION['username'])) { ?>
                             <form action="" method="post">
-                                <td style="float: right;"><button class="btn btn-primary" type="submit" name="post_likes<?= $post[0] ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-danger" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                                <?php
+                                            $sql_like = mysqli_query($con, "SELECT * FROM post_like WHERE id_post='$post_id' AND username='$username'");
+                                            if (mysqli_num_rows($sql_like) > 0) {
+                                                while ($like = mysqli_fetch_array($sql_like)) {
+                                                    if ($like['value'] == '1') { ?>
+                                            <td style="float: right;"><button class="btn btn-secondary" type="submit" name="unpost_likes<?= $post_id ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-danger" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                                        <?php } else { ?>
+                                            <td style="float: right;"><button class="btn btn-primary" type="submit" name="post_likes<?= $post_id ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-secondary" type="submit" name="unpost_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                                    <?php };
+                                                    };
+                                                } else { ?>
+                                    <td style="float: right;"><button class="btn btn-primary" type="submit" name="post_likes<?= $post_id ?>" value="1"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-danger" type="submit" name="post_likes<?= $post[0] ?>" value="0"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
+                                <?php }; ?>
                             </form>
-                            <?php if (isset($_POST["post_likes" . $post[0]])) {
-                                            $user_name = $_SESSION['username'];
-                                            $likes = mysqli_real_escape_string($con, $_POST['post_likes' . $post[0]]);
-                                            mysqli_query($con, "INSERT INTO post_like (id_post, username, value) VALUES ('$post[0]', '$user_name', '$likes')");
+                            <?php if (isset($_POST["post_likes" . $post_id])) {
+                                            $likes = mysqli_real_escape_string($con, $_POST['post_likes' . $post_id]);
+
+                                            $sql_like = mysqli_query($con, "SELECT * FROM post_like WHERE id_post='$post_id' AND username='$username'");
+                                            if (mysqli_num_rows($sql_like) > 0) {
+                                                mysqli_query($con, "UPDATE post_like SET value='$likes' WHERE id_post='$post_id' AND username='$username'");
+                                            } else {
+                                                mysqli_query($con, "INSERT INTO post_like (id_post, username, value) VALUES ('$post_id', '$username', '$likes')");
+                                            };
+                                            echo "<script>window.location='" . base_url() . "/post.php?id=$post_id';</script>";
+                                        } ?>
+
+                            <?php if (isset($_POST["unpost_likes" . $post_id])) {
+                                            $likes = mysqli_real_escape_string($con, $_POST['unpost_likes' . $post_id]);
+
+                                            $sql_like = mysqli_query($con, "SELECT * FROM post_like WHERE id_post='$post_id' AND username='$username'");
+                                            if (mysqli_num_rows($sql_like) > 0) {
+                                                mysqli_query($con, "DELETE FROM post_like WHERE id_post='$post_id' AND username='$username'");
+                                            };
+                                            echo "<script>window.location='" . base_url() . "/post.php?id=$post_id';</script>";
                                         } ?>
                         <?php } else { ?>
                             <td style="float: right;"><button class="btn btn-secondary"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-secondary"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
@@ -79,7 +120,7 @@
 
                 <div style="background-color:rgba(255, 255, 255, 0.25); padding: 5px 0;">
                     <?php
-                            $sql_comment = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$get_id'") or die(mysqli_error($con, ""));
+                            $sql_comment = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$post_id'") or die(mysqli_error($con, ""));
                             if (mysqli_num_rows($sql_comment) > 0) {
                                 while ($comment = mysqli_fetch_array($sql_comment)) { ?>
                             <div style="padding: 0 30px">
@@ -111,6 +152,6 @@
             <?php if (isset($_POST["submit_comment"])) {
                 $comment_date = date("Y-m-d h:i:sa");
                 $comment = mysqli_real_escape_string($con, $_POST['comment']);
-                mysqli_query($con, "INSERT INTO comment (nama_user, id_post, comment, date_create) VALUES ('$username', '$get_id', '$comment', '$comment_date')");
+                mysqli_query($con, "INSERT INTO comment (nama_user, id_post, comment, date_create) VALUES ('$username', '$post_id', '$comment', '$comment_date')");
                 echo "<script>window.location='';</script>";
             } ?>
