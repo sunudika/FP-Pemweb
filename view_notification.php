@@ -11,7 +11,7 @@ $result=mysqli_query($con, $sql);
 $response='';
 while($row=mysqli_fetch_array($result)) {
 	if(isset($row['id_post'])) {
-		$type = "Thread anda dikomentari oleh ".$row['nama_user'];
+		$type = "Thread dikomentari ".$row['nama_user'] . " " . "<a href=post.php?id=" .$row['id_post'] . ">lihat di sini</a>";
 	}
 	$response = $response . "<div class='notification-item'>" .
 	"<div class='notification-subject'>". $type . "</div>" . 
@@ -22,3 +22,4 @@ if(!empty($response)) {
 	print $response;
 }
 ?>
+

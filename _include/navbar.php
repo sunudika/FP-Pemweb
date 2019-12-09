@@ -2,6 +2,7 @@
     $count=0;
     $sql="SELECT * FROM comment WHERE status = 0";
     $result=mysqli_query($con, $sql);
+    
     $count=mysqli_num_rows($result);
 ?>
 
