@@ -41,7 +41,7 @@ if ($toogle_maintainance == 1) {
 
                 <button class="btn btn-primary btn-block btn-lg btn-signin" type="submit" name="login_user">Sign in</button>
 
-            </form><a href="#" class="forgot-password">Forgot your password?</a>
+            </form><a href="forgot_password.php" class="forgot-password">Forgot your password?</a>
             <a href="register.php">Daftar</a>
         </div>
     </body>
