@@ -12,10 +12,30 @@
             <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40" height="40px">
             <a href="<?php echo "profile_teman.php?username=" . $username; ?>" style="color:black"><?= $_SESSION['username']; ?></a>
             <form action="" method="post" enctype="multipart/form-data">
-                <input type="text" name="judul" placeholder="judul" style="display: block; margin-left: auto; margin-right: auto; width:99%" requied>
-                <textarea name="isi" rows="3" style="display: block; margin-left: auto; margin-right: auto; width:99%" placeholder="Ketik postingan anda disini"></textarea>
-                <input type="file" name="photo" value="upload foto"><br>
-                <input type="submit" name="post_kirim" class="btn btn-secondary" value="kirim" style="width:100%;">
+                <div class="form-group">
+                    <input type="text" name="judul" placeholder="judul" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Judul" requied>
+                    <textarea name="isi" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ketik postingan anda disini"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" name="photo" value="upload foto" class="custom-file-input" id="inputGroupFile04">
+                        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect04">
+                        <option value="0" selected>None Categories</option>
+                        <?php
+                            $sql_kategori = mysqli_query($con, "SELECT * FROM kategori") or die(mysqli_error($con, ""));
+                            if (mysqli_num_rows($sql_kategori) > 0) {
+                                while ($kategori = mysqli_fetch_array($sql_kategori)) { ?>
+                                <option value="<?= $kategori['id'] ?>"><?= $kategori['kategori'] ?></option>
+                        <?php };
+                            } ?>
+                    </select>
+                    <div class="input-group-append">
+                        <button type="submit" name="post_kirim" class="btn btn-secondary" value="kirim">Kirim</button>
+                    </div>
+                </div>
             </form>
         </div>
     <?php } ?>
