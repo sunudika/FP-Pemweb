@@ -183,7 +183,7 @@ if (isset($_POST['update-password'])) {
     }
 
 
-    if ($user) { // if user exists
+    if ($user) {
         if ($user['password'] === $password_old) {
             $password = md5($password_1);
             $username_lama = $user['username'];
