@@ -79,7 +79,20 @@
 
                 <table style="width:100%; text-align:center">
                     <tr>
-                        <td>0 Likes</td>
+                        <td>
+                            <?php
+                                    $sql_like_count = mysqli_query($con, "SELECT * FROM post_like WHERE id_post='$post_id' AND value='1'") or die(mysqli_error($con, ""));
+                                    $total_like = mysqli_num_rows($sql_like_count);
+                                    echo "$total_like Likes";
+                                    ?>
+                        </td>
+                        <td>
+                            <?php
+                                    $sql_like_count = mysqli_query($con, "SELECT * FROM post_like WHERE id_post='$post_id' AND value='0'") or die(mysqli_error($con, ""));
+                                    $total_like = mysqli_num_rows($sql_like_count);
+                                    echo "$total_like Dislike";
+                                    ?>
+                        </td>
                         <td>
                             <?php
                                     $sql_comment_count = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$post_id'") or die(mysqli_error($con, ""));
@@ -96,7 +109,14 @@
                             <?php if (isset($_POST["post_likes" . $post_id])) {
                                             $user_name = $_SESSION['username'];
                                             $likes = mysqli_real_escape_string($con, $_POST['post_likes' . $post_id]);
-                                            mysqli_query($con, "INSERT INTO post_like (id_post, username, value) VALUES ('$post_id', '$user_name', '$likes')");
+
+                                            $sql_like = mysqli_query($con, "SELECT * FROM post_like WHERE id_post='$post_id' AND username='$user_name'");
+                                            if (mysqli_num_rows($sql_like) > 0) {
+                                                mysqli_query($con, "UPDATE post_like SET value='$likes' WHERE id_post='$post_id' AND username='$user_name'");
+                                            } else {
+                                                mysqli_query($con, "INSERT INTO post_like (id_post, username, value) VALUES ('$post_id', '$user_name', '$likes')");
+                                            };
+                                            echo "<script>window.location='" . base_url() . "';</script>";
                                         } ?>
                         <?php } else { ?>
                             <td style="float: right;"><button class="btn btn-secondary"><i class="far fa-thumbs-up"></i> Cendol Dawet</button> <button class="btn btn-secondary"><i class="far fa-thumbs-down"></i> Bata Atos</button></td>
