@@ -1,3 +1,7 @@
+<?php
+    $count=0;
+?>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="<?= base_url() ?>"><img src="<?= base_url() ?>/images/aset/logo3.png" alt="LOGO FORMATIK" height="50"></a>
 
@@ -27,15 +31,50 @@
                                                                                             echo $_SESSION['username'];
                                                                                         }
                                                                                         ?></strong></a>
-                <button style="color:red;"><i class="far fa-bell"></i></button>
                 <!-- <button style="color:red;"><i class="far fa-bell"></i></button>"></i></button> -->
                 <a href="index.php?logout='1'" style="color: red; padding:2.5%; font-weight:bold;">logout</a>
             <?php } ?>
         </form>
+        <div class="demo-content">
+		<div id="notification-header">
+			   <div style="position:relative">
+			   <button id="notification-icon" style="color:white;" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if($count>0) { echo $count; } ?></span><i class="far fa-bell"></i></button>
+				 <div id="notification-latest"></div>
+				</div>			
+		</div>
+        <?php if(isset($message)) { ?> <div class="error"><?php echo $message; ?></div> <?php } ?>
 
+
+        <?php if(isset($success)) { ?> <div class="success"><?php echo $success;?></div> <?php } ?>
 
         <form class="form-inline my-2 my-lg-0"> </form>
-    </div>
+        </div>
 </nav>
 
 <div class="navbar-light bg-light" style="width: 100%; padding:0.5px"></div>
+
+
+<script type="text/javascript">
+
+	function myFunction() {
+		$.ajax({
+			url: "view_notification.php",
+			type: "POST",
+			processData:false,
+			success: function(data){
+				$("#notification-count").remove();					
+				$("#notification-latest").show();$("#notification-latest").html(data);
+			},
+			error: function(){}           
+		});
+	 }
+	 
+	 $(document).ready(function() {
+		$('body').click(function(e){
+			if ( e.target.id != 'notification-icon'){
+				$("#notification-latest").hide();
+			}
+		});
+	});
+		 
+	</script>

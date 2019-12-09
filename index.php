@@ -53,18 +53,6 @@ if ($toogle_maintainance == 1) {
         function closeForm() {
             document.getElementById("myForm").style.display = "none";
         }
-
-        $(function() {
-		$("#open-chat").click(function(){
-		$("#open-chat").hide();
-            });
-	    });
-
-        $(function() {
-		$("#chat-close").click(function(){
-		$("#open-chat").show();
-            });
-	    });
     </script>
 
 <?php } ?>
