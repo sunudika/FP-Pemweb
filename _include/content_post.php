@@ -132,7 +132,7 @@
 
                 <div style="background-color:rgba(255, 255, 255, 0.25); padding: 5px 0;">
                     <?php
-                            $sql_comment = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$post_id' ORDER BY id") or die(mysqli_error($con, ""));
+                            $sql_comment = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$post_id' ORDER BY comment.id") or die(mysqli_error($con, ""));
                             if (mysqli_num_rows($sql_comment) > 0) {
                                 while ($comment = mysqli_fetch_array($sql_comment)) { ?>
                             <div style="padding: 0 30px">
