@@ -26,10 +26,21 @@
                         <div class="dropdown" style="float:right;">
                             <button class="dropbtn"><i class="fas fa-ellipsis-h"></i></button>
                             <div class="dropdown-content">
-                                <a href="#">Share Link</a>
+                                    <button onclick="share()" class="btn" style="width: 160px">Share</button>
+                                    <input type="text" value="<?= base_url() ?>/post.php?id=<?= $post_id ?>" id="share" style="display:none;">
+                                    <script>
+                                        function share() {
+                                        var copyText = document.getElementById("share");
+                                        copyText.select();
+                                        copyText.setSelectionRange(0, 99999)
+                                        document.execCommand("copy");
+                                        alert("Copied the text: " + copyText.value);
+                                        }
+                                    </script>
                                 <?php if ($post['nama_user'] == $_SESSION['username']) { ?>
-                                    <a href="#">Edit Post</a>
-                                    <a href="#" onclick="del<?= $post[0] ?>()">Delete Post</a>
+                                    <br>
+                                    <button onclick="del<?= $post[0] ?>()" class="btn" style="width: 160px">Delete Post</button>
+                                                                                                           
                                     <script>
                                         function del<?= $post[0] ?>() {
                                             var txt;

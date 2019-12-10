@@ -52,19 +52,33 @@
                     <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40px" height="40px">
                     <a href="profile_teman.php?username=<?= $post['nama_user']; ?>" style="color:black"><?= $post['nama_user']; ?></a> Pada <?= $post['date_created']; ?>
 
-                    <?php if ($post['nama_user'] == $_SESSION['username']) { ?>
+                    <?php if (isset($_SESSION['username'])) { ?>
                         <div class="dropdown" style="float:right;">
                             <button class="dropbtn"><i class="fas fa-ellipsis-h"></i></button>
                             <div class="dropdown-content">
-                                <a href="#" onclick="del<?= $post[0] ?>()">Delete Post</a>
-                                <script>
-                                    function del<?= $post_id ?>() {
-                                        var txt;
-                                        if (confirm(" Anda yakin ingin mendelete post ini?")) {
-                                            window.location = "<?= base_url() ?>/_auth/delete_post.php?id=<?= $post_id ?>";
+                                    <button onclick="share()" class="btn" style="width: 160px">Share</button>
+                                    <input type="text" value="<?= base_url() ?>/post.php?id=<?= $post_id ?>" id="share" style="display:none;">
+                                    <script>
+                                        function share() {
+                                        var copyText = document.getElementById("share");
+                                        copyText.select();
+                                        copyText.setSelectionRange(0, 99999)
+                                        document.execCommand("copy");
+                                        alert("Copied the text: " + copyText.value);
                                         }
-                                    }
-                                </script>
+                                    </script>
+                                <?php if ($post['nama_user'] == $_SESSION['username']) { ?>
+                                    <br>
+                                    <button onclick="del<?= $post[0] ?>()" class="btn" style="width: 160px">Delete Post</button>
+                                                                                                           
+                                    <script>
+                                        function del<?= $post[0] ?>() {
+                                            var txt;
+                                            if (confirm(" Anda yakin ingin mendelete post ini?")) {
+                                                window.location = "<?= base_url() ?>/_auth/delete_post.php?id=<?= $post[0] ?>";
+                                            }
+                                        }
+                                    </script> <?php }; ?>
                             </div>
                         </div> <?php } ?> <br>
                 </div>
