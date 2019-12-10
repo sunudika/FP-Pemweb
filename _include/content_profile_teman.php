@@ -7,38 +7,39 @@
                 $img_profile = $profile['img_profile'];
             };
         } ?>
-        <?php if($_SESSION['username'] === $username) { ?>
+        <?php if ($_SESSION['username'] === $username) { ?>
             <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
-            <img src=" <?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40" height="40px">
-            <a href="<?php echo "profile_teman.php?username=" . $username; ?>" style="color:black"><?= $_SESSION['username']; ?></a>
-            <form action="" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <input type="text" name="judul" placeholder="judul" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Judul" requied>
-                    <textarea name="isi" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ketik postingan anda disini"></textarea>
-                </div>
+                <img src=" <?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40" height="40px">
+                <a href="<?php echo "profile_teman.php?username=" . $username; ?>" style="color:black"><?= $_SESSION['username']; ?></a>
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="text" name="judul" placeholder="judul" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Judul" requied>
+                        <textarea name="isi" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ketik postingan anda disini"></textarea>
+                    </div>
 
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" name="photo" value="upload foto" class="custom-file-input" id="inputGroupFile04">
-                        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" name="photo" value="upload foto" class="custom-file-input" id="inputGroupFile04">
+                            <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                        </div>
+                        <select name="kategori" class="custom-select" id="inputGroupSelect04">
+                            <option value="" selected>None Categories</option>
+                            <?php
+                                    $sql_kategori = mysqli_query($con, "SELECT * FROM kategori") or die(mysqli_error($con, ""));
+                                    if (mysqli_num_rows($sql_kategori) > 0) {
+                                        while ($kategori = mysqli_fetch_array($sql_kategori)) { ?>
+                                    <option value="<?= $kategori['kategori'] ?>"><?= $kategori['kategori'] ?></option>
+                            <?php };
+                                    } ?>
+                        </select>
+                        <div class="input-group-append">
+                            <button type="submit" name="post_kirim" class="btn btn-secondary" value="kirim">Kirim</button>
+                        </div>
                     </div>
-                    <select name="kategori" class="custom-select" id="inputGroupSelect04">
-                        <option value="" selected>None Categories</option>
-                        <?php
-                            $sql_kategori = mysqli_query($con, "SELECT * FROM kategori") or die(mysqli_error($con, ""));
-                            if (mysqli_num_rows($sql_kategori) > 0) {
-                                while ($kategori = mysqli_fetch_array($sql_kategori)) { ?>
-                                <option value="<?= $kategori['kategori'] ?>"><?= $kategori['kategori'] ?></option>
-                        <?php };
-                            } ?>
-                    </select>
-                    <div class="input-group-append">
-                        <button type="submit" name="post_kirim" class="btn btn-secondary" value="kirim">Kirim</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    <?php }else { } } ?>
+                </form>
+            </div>
+    <?php } else { }
+    } ?>
 
     <?php
     $sql_post = mysqli_query($con, "SELECT * FROM post JOIN user ON post.nama_user=user.username AND nama_user='$username' ORDER BY post.id DESC LIMIT 0, 10") or die(mysqli_error($con, ""));
@@ -165,7 +166,7 @@
                 <div style="padding:10px;"></div>
                 <div style="background-color:rgba(255, 255, 255, 0.25); padding: 5px 0;">
                     <?php
-                            $sql_comment = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$post_id' ORDER BY comment.id DESC LIMIT 0, 1") or die(mysqli_error($con, ""));
+                            $sql_comment = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$post_id' ORDER BY comment.id DESC LIMIT 0, 2") or die(mysqli_error($con, ""));
                             if (mysqli_num_rows($sql_comment) > 0) {
                                 while ($comment = mysqli_fetch_array($sql_comment)) { ?>
                             <div style="padding: 0 30px">
