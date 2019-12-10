@@ -26,22 +26,22 @@
                         <div class="dropdown" style="float:right;">
                             <button class="dropbtn"><i class="fas fa-ellipsis-h"></i></button>
                             <div class="dropdown-content">
-                                    <input type="text" value="<?= base_url() ?>/post.php?id=<?= $post_id ?>" id="share" style="color:white; width:180px;">
-                                    <button onclick="share()" class="btn" style="width: 180px">Share</button>
-                                    <input type="text" value="<?= base_url() ?>/post.php?id=<?= $post_id ?>" id="share" style="display:none;">
-                                    <script>
-                                        function share() {
+                                <input type="text" value="<?= base_url() ?>/post.php?id=<?= $post_id ?>" id="share" style="color:white; width:180px;">
+                                <button onclick="share()" class="btn" style="width: 180px">Share</button>
+                                <input type="text" value="<?= base_url() ?>/post.php?id=<?= $post_id ?>" id="share" style="display:none;">
+                                <script>
+                                    function share() {
                                         var copyText = document.getElementById("share");
                                         copyText.select();
                                         copyText.setSelectionRange(0, 99999)
                                         document.execCommand("copy");
                                         alert("Copied the text: " + copyText.value);
-                                        }
-                                    </script>
+                                    }
+                                </script>
                                 <?php if ($post['nama_user'] == $_SESSION['username']) { ?>
                                     <br>
                                     <button onclick="del<?= $post[0] ?>()" class="btn" style="width: 180px">Delete Post</button>
-                                                                                                           
+
                                     <script>
                                         function del<?= $post[0] ?>() {
                                             var txt;
@@ -132,7 +132,7 @@
 
                 <div style="background-color:rgba(255, 255, 255, 0.25); padding: 5px 0;">
                     <?php
-                            $sql_comment = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$post_id'") or die(mysqli_error($con, ""));
+                            $sql_comment = mysqli_query($con, "SELECT * FROM comment JOIN user on comment.nama_user=user.username WHERE id_post='$post_id' ORDER BY comment.id") or die(mysqli_error($con, ""));
                             if (mysqli_num_rows($sql_comment) > 0) {
                                 while ($comment = mysqli_fetch_array($sql_comment)) { ?>
                             <div style="padding: 0 30px">

@@ -33,7 +33,7 @@
                             } ?>
                     </select>
                     <div class="input-group-append">
-                        <button type="submit" name="post_kirim" class="btn btn-secondary" value="kirim">Kirim</button>
+                        <button type="submit" name="post_kirim" class="btn btn-secondary" value="kirim" style="z-index:0">Kirim</button>
                     </div>
                 </div>
             </form>
