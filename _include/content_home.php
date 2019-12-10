@@ -13,7 +13,7 @@
             <a href="<?php echo "profile_teman.php?username=" . $username; ?>" style="color:black"><?= $_SESSION['username']; ?></a>
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <input type="text" name="judul" placeholder="judul" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Judul" requied>
+                    <input type="text" name="judul" placeholder="judul" class="form-control" autocomplete="off" required>
                     <textarea name="isi" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ketik postingan anda disini"></textarea>
                 </div>
 

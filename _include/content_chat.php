@@ -11,7 +11,7 @@
                         <?php include "msgs.php"; ?>
                     </div>
                     <form id="msg_form">
-                        <input name="msg" size="25" type="text" /><button style="margin-left: 15px; background-color: #3f84e5; border-color: #3f84e5; color:white;">Send</button>
+                        <input name="msg" size="25" type="text"  autocomplete="off" /><button style="margin-left: 15px; background-color: #3f84e5; border-color: #3f84e5; color:white;">Send</button>
                     </form>
                 <?php } ?>
             </div>

@@ -24,7 +24,7 @@ $count = mysqli_num_rows($result);
             } ?>
             <div style="padding: 4%"></div>
             <form class="form-inline my-2 my-lg-0" method="get" action="search.php">
-                <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
+                <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required  autocomplete="off">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
 
                 <?php if (!isset($_SESSION['username'])) { ?>
