@@ -8,8 +8,8 @@
                 $username = $profile['username'];
             };
         } ?>
-        <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px; z-index: -1; position:relative">
-            <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40" height="40px">
+        <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;>
+            <img src=" <?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40" height="40px">
             <a href="<?php echo "profile_teman.php?username=" . $username; ?>" style="color:black"><?= $_SESSION['username']; ?></a>
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="form-group">
