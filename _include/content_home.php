@@ -8,7 +8,7 @@
                 $username = $profile['username'];
             };
         } ?>
-        <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
+        <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px; z-index: -1; position:relative">
             <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40" height="40px">
             <a href="<?php echo "profile_teman.php?username=" . $username; ?>" style="color:black"><?= $_SESSION['username']; ?></a>
             <form action="" method="post" enctype="multipart/form-data">
@@ -56,27 +56,27 @@
                         <div class="dropdown" style="float:right;">
                             <button class="dropbtn"><i class="fas fa-ellipsis-h"></i></button>
                             <div class="dropdown-content">
-                                    <input type="text" value="<?= base_url() ?>/post.php?id=<?= $post_id ?>" id="share" style="color:white; width:180px;">
-                                    <button onclick="share()" id="link" class="btn" style="width: 180px">Share</button>
-                                    <script>
-                                        $(function(){
-                                        $("#link").click(function(){
+                                <input type="text" value="<?= base_url() ?>/post.php?id=<?= $post_id ?>" id="share" style="color:white; width:180px;">
+                                <button onclick="share()" id="link" class="btn" style="width: 180px">Share</button>
+                                <script>
+                                    $(function() {
+                                        $("#link").click(function() {
                                             $("share").show();
                                         });
-                                        });
+                                    });
 
-                                        function share() {
+                                    function share() {
                                         var copyText = document.getElementById("share");
                                         copyText.select();
                                         copyText.setSelectionRange(0, 99999)
                                         document.execCommand("copy");
                                         alert("Copied the text: " + copyText.value);
-                                        }
-                                    </script>
+                                    }
+                                </script>
                                 <?php if ($post['nama_user'] == $_SESSION['username']) { ?>
                                     <br>
                                     <button onclick="del<?= $post[0] ?>()" class="btn" style="width: 180px">Delete Post</button>
-                                                                                                           
+
                                     <script>
                                         function del<?= $post[0] ?>() {
                                             var txt;

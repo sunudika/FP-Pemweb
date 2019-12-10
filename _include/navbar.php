@@ -1,9 +1,9 @@
 <?php
-    $count=0;
-    $sql="SELECT * FROM comment WHERE status=0";
-    $result=mysqli_query($con, $sql);
+$count = 0;
+$sql = "SELECT * FROM comment WHERE status=0";
+$result = mysqli_query($con, $sql);
 
-    $count=mysqli_num_rows($result);
+$count = mysqli_num_rows($result);
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -39,43 +39,46 @@
                 <a href="index.php?logout='1'" style="color: red; padding:2.5%; font-weight:bold;">logout</a>
             <?php } ?>
         </form>
-        <div class="demo-content">
-			   <div style="position:relative">
-			         <button id="notification-icon" style="color:white;" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if($count>0) { echo $count; } ?></span><i class="far fa-bell"></i></button>
-				        <div id="notification-latest"></div>
-				</div>			
-        <?php if(isset($message)) { ?> <div class="error"><?php echo $message; ?></div> <?php } ?>
+
+        <?php if (isset($_SESSION['username'])) { ?>
+            <div class="demo-content">
+                <div style="position:relative">
+                    <button id="notification-icon" style="color:white;" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if ($count > 0) {
+                                                                                                                                                                    echo $count;
+                                                                                                                                                                } ?></span><i class="far fa-bell"></i></button>
+                    <div id="notification-latest"></div>
+                </div>
+                <?php if (isset($message)) { ?> <div class="error"><?php echo $message; ?></div> <?php } ?>
+                <?php if (isset($success)) { ?> <div class="success"><?php echo $success; ?></div> <?php } ?>
+                <form class="form-inline my-2 my-lg-0"> </form>
+            </div>
+        <?php } ?>
 
 
-        <?php if(isset($success)) { ?> <div class="success"><?php echo $success;?></div> <?php } ?>
-
-        <form class="form-inline my-2 my-lg-0"> </form>
-        </div>
 </nav>
 
 
 
 <script type="text/javascript">
+    function myFunction() {
+        $.ajax({
+            url: "view_notification.php",
+            type: "POST",
+            processData: false,
+            success: function(data) {
+                $("#notification-count").remove();
+                $("#notification-latest").show();
+                $("#notification-latest").html(data);
+            },
+            error: function() {}
+        });
+    }
 
-	function myFunction() {
-		$.ajax({
-			url: "view_notification.php",
-			type: "POST",
-			processData:false,
-			success: function(data){
-				$("#notification-count").remove();					
-				$("#notification-latest").show();$("#notification-latest").html(data);
-			},
-			error: function(){}           
-		});
-	 }
-	 
-	 $(document).ready(function() {
-		$('body').click(function(e){
-			if ( e.target.id != 'notification-icon'){
-				$("#notification-latest").hide();
-			}
-		});
-	});
-		 
-	</script>
+    $(document).ready(function() {
+        $('body').click(function(e) {
+            if (e.target.id != 'notification-icon') {
+                $("#notification-latest").hide();
+            }
+        });
+    });
+</script>
