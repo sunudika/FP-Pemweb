@@ -42,7 +42,7 @@ $count = mysqli_num_rows($result);
             </form>
 
             <?php if (isset($_SESSION['username'])) { ?>
-                <div class="demo-content" style="float: right">
+                <div class="demo-content" style="float: right; z-index:1;">
                     <div style="position:relative">
                         <button id="notification-icon" style="color:white;" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if ($count > 0) {
                                                                                                                                                                         echo $count;
