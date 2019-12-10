@@ -136,7 +136,7 @@
                             if (mysqli_num_rows($sql_comment) > 0) {
                                 while ($comment = mysqli_fetch_array($sql_comment)) { ?>
                             <div style="padding: 0 30px">
-                                <img src="<?= base_url() ?>/images/profile/<?= $comment['img_profile'] ?>" alt="" style="border-radius:100%; margin-left:10px;" width="30">
+                                <img src="<?= base_url() ?>/images/profile/<?= $comment['img_profile'] ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40px" height="40px">
                                 <a href=""><?= $comment['nama_user'] ?></a> <?= $comment['comment'] ?> Pada (<?= $comment['date_create'] ?>)
                             </div>
                     <?php };
