@@ -18,7 +18,7 @@
         $sql_kategori = mysqli_query($con, "SELECT * FROM kategori") or die(mysqli_error($con, ""));
         if (mysqli_num_rows($sql_kategori) > 0) {
             while ($kategori = mysqli_fetch_array($sql_kategori)) { ?>
-                <a href="" style="font-size: 16px; padding:8px; color:white;">#<?= strtoupper($kategori['kategori']) ?></a>
+                <a href="<?= base_url() ?>/search.php?search=<?= $kategori['kategori'] ?>" style="font-size: 16px; padding:8px; color:white;">#<?= strtoupper($kategori['kategori']) ?></a>
         <?php };
         } ?>
         <div style="padding: 4%"></div>
