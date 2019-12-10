@@ -41,7 +41,7 @@
     <?php } ?>
 
     <?php
-    $sql_post = mysqli_query($con, "SELECT * FROM post JOIN user ON post.nama_user=user.username ORDER BY post.id DESC LIMIT 0, 10") or die(mysqli_error($con, ""));
+    $sql_post = mysqli_query($con, "SELECT * FROM post JOIN user ON post.nama_user=user.username ORDER BY post.id DESC") or die(mysqli_error($con, ""));
     if (mysqli_num_rows($sql_post) > 0) {
         while ($post = mysqli_fetch_array($sql_post)) {
             $img_profile = $post['img_profile'];
