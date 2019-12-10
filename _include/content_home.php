@@ -56,9 +56,15 @@
                         <div class="dropdown" style="float:right;">
                             <button class="dropbtn"><i class="fas fa-ellipsis-h"></i></button>
                             <div class="dropdown-content">
-                                    <button onclick="share()" class="btn" style="width: 160px">Share</button>
-                                    <input type="text" value="<?= base_url() ?>/post.php?id=<?= $post_id ?>" id="share" style="display:none;">
+                                    <input type="text" value="<?= base_url() ?>/post.php?id=<?= $post_id ?>" id="share" style="color:white; width:180px;">
+                                    <button onclick="share()" id="link" class="btn" style="width: 180px">Share</button>
                                     <script>
+                                        $(function(){
+                                        $("#link").click(function(){
+                                            $("share").show();
+                                        });
+                                        });
+
                                         function share() {
                                         var copyText = document.getElementById("share");
                                         copyText.select();
@@ -69,7 +75,7 @@
                                     </script>
                                 <?php if ($post['nama_user'] == $_SESSION['username']) { ?>
                                     <br>
-                                    <button onclick="del<?= $post[0] ?>()" class="btn" style="width: 160px">Delete Post</button>
+                                    <button onclick="del<?= $post[0] ?>()" class="btn" style="width: 180px">Delete Post</button>
                                                                                                            
                                     <script>
                                         function del<?= $post[0] ?>() {
