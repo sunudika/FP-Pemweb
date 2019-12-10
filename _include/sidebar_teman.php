@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 ?>
 
-<div class="col-3">
+<div class="col-md-3">
     <div class="bg-light" style="padding:20px; border-radius:20px; margin-top:20px;">
         <h6 style="text-align:center">PROFIL</h6>
         <img src="<?= base_url() ?>/images/profile/<?= $data['img_profile'] ?>" alt="" style="border-radius:100%; margin-top:10px; margin-bottom:10px; display:block; margin: 0 auto;" width="100" height="100">
