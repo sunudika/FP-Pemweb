@@ -52,21 +52,23 @@
                     <img src="<?= base_url() ?>/images/profile/<?= $img_profile ?>" alt="" style="border-radius:100%; margin-left:10px;" width="40px" height="40px">
                     <a href="profile_teman.php?username=<?= $post['nama_user']; ?>" style="color:black"><?= $post['nama_user']; ?></a> Pada <?= $post['date_created']; ?>
 
-                    <?php if ($post['nama_user'] == $_SESSION['username']) { ?>
-                        <div class="dropdown" style="float:right;">
-                            <button class="dropbtn"><i class="fas fa-ellipsis-h"></i></button>
-                            <div class="dropdown-content">
-                                <a href="#" onclick="del<?= $post[0] ?>()">Delete Post</a>
-                                <script>
-                                    function del<?= $post_id ?>() {
-                                        var txt;
-                                        if (confirm(" Anda yakin ingin mendelete post ini?")) {
-                                            window.location = "<?= base_url() ?>/_auth/delete_post.php?id=<?= $post_id ?>";
+                    <?php if (isset($_SESSION['username'])) {
+                                if ($post['nama_user'] == $_SESSION['username']) { ?>
+                            <div class="dropdown" style="float:right;">
+                                <button class="dropbtn"><i class="fas fa-ellipsis-h"></i></button>
+                                <div class="dropdown-content">
+                                    <a href="#" onclick="del<?= $post[0] ?>()">Delete Post</a>
+                                    <script>
+                                        function del<?= $post_id ?>() {
+                                            var txt;
+                                            if (confirm(" Anda yakin ingin mendelete post ini?")) {
+                                                window.location = "<?= base_url() ?>/_auth/delete_post.php?id=<?= $post_id ?>";
+                                            }
                                         }
-                                    }
-                                </script>
-                            </div>
-                        </div> <?php } ?> <br>
+                                    </script>
+                                </div>
+                            </div> <?php };
+                                            } ?> <br>
                 </div>
                 <?php if ($post['img_post'] != "") { ?>
                     <img src="<?= base_url() ?>/images/thread/<?= $post['img_post']; ?>" style="display: block; margin-left: auto; margin-right: auto; width:70%;" alt="Ceritanya ini foto">
