@@ -176,7 +176,6 @@
                     <?php };
                             }; ?>
                 </div>
-
                 <a href="post.php?id=<?= $post_id ?>"><button class="btn btn-light" style="width:100%">Lihat Selengkapnya</button></a>
             </div>
     <?php };
