@@ -22,13 +22,13 @@
                         <input type="file" name="photo" value="upload foto" class="custom-file-input" id="inputGroupFile04">
                         <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect04">
-                        <option value="0" selected>None Categories</option>
+                    <select name="kategori" class="custom-select" id="inputGroupSelect04">
+                        <option value="" selected>None Categories</option>
                         <?php
                             $sql_kategori = mysqli_query($con, "SELECT * FROM kategori") or die(mysqli_error($con, ""));
                             if (mysqli_num_rows($sql_kategori) > 0) {
                                 while ($kategori = mysqli_fetch_array($sql_kategori)) { ?>
-                                <option value="<?= $kategori['id'] ?>"><?= $kategori['kategori'] ?></option>
+                                <option value="<?= $kategori['kategori'] ?>"><?= $kategori['kategori'] ?></option>
                         <?php };
                             } ?>
                     </select>

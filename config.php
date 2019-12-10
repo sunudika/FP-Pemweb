@@ -112,6 +112,7 @@ if (isset($_POST['post_kirim'])) {
 
     $judul = mysqli_real_escape_string($con, $_POST['judul']);
     $isi = mysqli_real_escape_string($con, $_POST['isi']);
+    $kategori = mysqli_real_escape_string($con, $_POST['kategori']);
     $nama = $_SESSION['username'];
     $post_date = date("Y-m-d h:i:sa");
 
@@ -121,7 +122,7 @@ if (isset($_POST['post_kirim'])) {
     $photosize = trim(mysqli_real_escape_string($con, $_FILES['photo']['size']));
 
     if ($error == 4) {
-        $sql_add = mysqli_query($con, "INSERT INTO post (judul, post, nama_user, date_created) VALUES ('$judul','$isi','$nama','$post_date')");
+        $sql_add = mysqli_query($con, "INSERT INTO post (judul, post, kategori, nama_user, date_created) VALUES ('$judul','$isi','$kategori','$nama','$post_date')");
     } else {
         $extphotovalid = ['jpg', 'jpeg', 'png'];
         $extphoto = explode('.', $photo);
@@ -135,7 +136,7 @@ if (isset($_POST['post_kirim'])) {
         $photo = uniqid() . '.' . $extphoto;
 
         move_uploaded_file($_FILES['photo']['tmp_name'], 'images/thread/' . $photo);
-        $sql_add = mysqli_query($con, "INSERT INTO post (judul, post, img_post, nama_user, date_created) VALUES ('$judul','$isi','$photo','$nama','$post_date')");
+        $sql_add = mysqli_query($con, "INSERT INTO post (judul, post, kategori, img_post, nama_user, date_created) VALUES ('$judul','$isi','$kategori','$photo','$nama','$post_date')");
     }
     if ($_POST['post_kirim'] === 'profil') {
         header("location: profile_teman.php?username=" . $post['nama_user']);

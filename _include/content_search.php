@@ -3,7 +3,7 @@
     <br>
     <?php
     $search = $_GET['search'];
-    $sql_find = mysqli_query($con, "SELECT * FROM post JOIN user ON post.nama_user=user.username WHERE judul LIKE '%$search%' OR post LIKE '%$search%' ORDER BY post.id DESC") or die(mysqli_error($con, ""));
+    $sql_find = mysqli_query($con, "SELECT * FROM post JOIN user ON post.nama_user=user.username WHERE judul LIKE '%$search%' OR post LIKE '%$search%' OR kategori LIKE '%$search%' ORDER BY post.id DESC") or die(mysqli_error($con, ""));
     if (mysqli_num_rows($sql_find) > 0) {
         while ($find = mysqli_fetch_array($sql_find)) {  ?>
             <img src="<?= base_url() ?>/images/profile/<?= $find['img_profile']; ?>" alt="" style="border-radius:100%; margin-left:10px;" width="35" height="35">
