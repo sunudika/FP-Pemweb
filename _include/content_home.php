@@ -181,7 +181,7 @@
     <?php };
     } ?>
 
-    <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
+    <!-- <div style="background-color:rgba(255, 255, 255, 0.5); margin-top:20px;">
         <button class="btn btn-light" style="width:100%">Load Thread</button>
-    </div>
+    </div> -->
 </div>
