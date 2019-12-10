@@ -1,4 +1,4 @@
-<div class="col-md-3" style="color: white">
+<div class="col-md-3" style="color: white; padding: 20px">
     <div class="kolom">
         <ul class="nav flex-column">
             <li class="nav-item" style="padding:10px;">
