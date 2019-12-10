@@ -161,10 +161,9 @@
         } ?>
             </div>
 
-
             <?php if (isset($_POST["submit_comment"])) {
                 $comment_date = date("Y-m-d h:i:sa");
-                $comment = mysqli_real_escape_string($con, $_POST['comment']);
+                $comment = mysqli_real_escape_string($con, htmlspecialchars($_POST['comment']));
                 mysqli_query($con, "INSERT INTO comment (nama_user, id_post, comment, date_create) VALUES ('$username', '$post_id', '$comment', '$comment_date')");
                 echo "<script>window.location='';</script>";
             } ?>
