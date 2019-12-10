@@ -1,7 +1,7 @@
 <div class="col-md-3" style="color: white">
     <div class="kolom">
         <ul class="nav flex-column">
-            <li class="nav-item">
+            <li class="nav-item" style="padding:10px;">
                 <a class="nav-link active" style="color: white" href="#">HOT THREAD</a>
                 <ol>
                     <?php
@@ -18,7 +18,7 @@
                     } ?>
                 </ol>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" style="padding:10px;">
                 <a class="nav-link" style="color: white" href="#">TREND PEOPLE</a>
                 <ol>
                     <?php
