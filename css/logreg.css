@@ -65,7 +65,7 @@ body {
 }
 
 .login-card label {
-	color: #000000;
+	color: white !important;
 }
 
 .login-card .form-signin .form-control:focus {

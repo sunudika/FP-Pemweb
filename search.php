@@ -12,27 +12,19 @@ if ($toogle_maintainance == 1) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="author" content="Kelompok 3">
-        <title>FORMATIK - Main</title>
+        <title>FORMATIK - Search</title>
         <script src="//code.jquery.com/jquery-latest.js"></script>
         <script src="js/chat.js"></script>
         <link rel="stylesheet" type="text/css" href="css/search.css">
+        <link rel="icon" href="./images/aset/logo.png" type="image/x-icon">
         <?php include "css/include_css.php"; ?>
     </head>
 
-    <body class="bg-dark">
+    <body>
         <?php
             include "_include/navbar.php";
             ?>
-        <div class="container">
-            <div class="row">
-                <?php
-                    include "_include/sidebar.php";
-                    include "_include/content_search.php"; ?>
-            </div>
-        </div>
-
-<!--mulai dr sini-->
-        <div class="search">
+         <div class="search">
             <div class="row">
                 <div class="col-md-3">
                     <div class="kolom">
@@ -47,13 +39,14 @@ if ($toogle_maintainance == 1) {
                     </div>
                 </div>
 
-                <div class="col-md-9">
-                    <!--- isi buat hasil search-->
+                <div class="col-md-8">
+                    <div class="kolom2">
+                        <?php
+                            include "_include/content_search.php"; ?>
+                    </div>
                 </div>
             </div>
         </div>
-        
-<!-- Sampai sini-->
 
 
         <?php

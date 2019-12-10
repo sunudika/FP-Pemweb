@@ -40,12 +40,10 @@
             <?php } ?>
         </form>
         <div class="demo-content">
-		<div id="notification-header">
 			   <div style="position:relative">
-			   <button id="notification-icon" style="color:white;" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if($count>0) { echo $count; } ?></span><i class="far fa-bell"></i></button>
-				 <div id="notification-latest"></div>
+			         <button id="notification-icon" style="color:white;" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if($count>0) { echo $count; } ?></span><i class="far fa-bell"></i></button>
+				        <div id="notification-latest"></div>
 				</div>			
-		</div>
         <?php if(isset($message)) { ?> <div class="error"><?php echo $message; ?></div> <?php } ?>
 
 
@@ -55,7 +53,6 @@
         </div>
 </nav>
 
-<div class="navbar-light bg-light" style="width: 100%; padding:0.5px"></div>
 
 
 <script type="text/javascript">

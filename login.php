@@ -34,8 +34,7 @@ if ($toogle_maintainance == 1) {
                 <input class="form-control" type="password" name="password" required placeholder="Password" id="inputPassword" />
                 <div class="checkbox">
                     <div class="checkbox">
-                        <label>
-                            <input type="checkbox" />Remember me</label>
+                        <label><input type="checkbox">Remember me</input></label>
                     </div>
                 </div>
 
