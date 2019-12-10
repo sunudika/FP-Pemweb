@@ -5,10 +5,10 @@
                 <a class="nav-link active" style="color: white" href="#">HOT THREAD</a>
                 <ol>
                     <?php
-                    $sql_thread = mysqli_query($con, "SELECT judul, COUNT(*) FROM `post_like` JOIN post ON post_like.id_post=post.id GROUP BY post.judul ORDER BY COUNT(*) DESC LIMIT 0, 6") or die(mysqli_error($con, ""));
+                    $sql_thread = mysqli_query($con, "SELECT post.id, judul, COUNT(*) FROM `post_like` JOIN post ON post_like.id_post=post.id GROUP BY post.judul ORDER BY COUNT(*) DESC LIMIT 0, 6") or die(mysqli_error($con, ""));
                     if (mysqli_num_rows($sql_thread) > 0) {
                         while ($thread = mysqli_fetch_array($sql_thread)) { ?>
-                            <li><a style="color: white" href="post.php?id=<?= $thread['id'] ?>"><?= substr($thread['judul'], 0, 8);
+                            <li><a style="color: white" href="post.php?id=<?= $thread[0] ?>"><?= substr($thread['judul'], 0, 8);
                                                                                                         if (strlen($thread['judul']) >= 8) {
                                                                                                             echo "...";
                                                                                                         } ?>
@@ -25,7 +25,7 @@
                     $sql_user = mysqli_query($con, "SELECT nama_user,COUNT(*) FROM `post` GROUP BY nama_user ORDER BY COUNT(*) DESC LIMIT 0, 6") or die(mysqli_error($con, ""));
                     if (mysqli_num_rows($sql_user) > 0) {
                         while ($user = mysqli_fetch_array($sql_user)) { ?>
-                            <li><a style="color: white" href="<?php echo "profile_teman.php?username=" . $user['nama_user']; ?>">
+                            <li><a style="color: white" href="profile_teman.php?username=<?= $user['nama_user']; ?>">
                                     <?= substr($user['nama_user'], 0, 8);
                                             if (strlen($user['nama_user']) >= 8) {
                                                 echo "...";
