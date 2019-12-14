@@ -73,7 +73,7 @@ if ($toogle_maintainance == 1) {
                                     </td>
                                 </tr>
                             </table>
-                            <button type="submit" class="btn" style="margin-left: 38%; margin-bottom:5px; width: 220px;" name="update-password">Ubah</button>
+                            <button type="submit" class="btn" style="margin-left: 40%; margin-bottom:5px; width: 225px;" name="update-password">Ubah</button>
                         </form>
                     </div>
                 </div>
